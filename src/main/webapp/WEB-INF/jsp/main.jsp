@@ -7,7 +7,7 @@
     <title>首页</title>
 </head>
 <body>
-<jsp:include page="/src/main/webapp/WEB-INF/jsp/common/mainHeader.jsp" />
+<jsp:include page="common/mainHeader.jsp" />
 
 
 </body>
