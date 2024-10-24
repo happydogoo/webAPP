@@ -10,9 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d074831-da69-41b6-a0b2-81bbdaf864fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/MainServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/DBConnectionManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/RegisterServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/main.jsp" afterDir="false" />
@@ -197,7 +197,10 @@
       <workItem from="1729609405953" duration="2878000" />
       <workItem from="1729644410524" duration="1771000" />
       <workItem from="1729648763524" duration="5316000" />
-      <workItem from="1729673070480" duration="10241000" />
+      <workItem from="1729673070480" duration="10463000" />
+      <workItem from="1729732551756" duration="2249000" />
+      <workItem from="1729749484807" duration="1866000" />
+      <workItem from="1729769573255" duration="4539000" />
     </task>
     <servers />
   </component>

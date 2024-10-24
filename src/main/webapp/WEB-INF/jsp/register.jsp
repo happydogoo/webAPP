@@ -47,7 +47,7 @@
 <div class="register-container">
     <h2>用户注册</h2>
 
-    <form action="registerServlet" method="post">
+    <form action="${pageContext.request.contextPath}/register" method="post">
         <label for="username">用户名:</label>
         <input type="text" id="username" name="username" required>
 
