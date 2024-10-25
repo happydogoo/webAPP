@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             if (isSaved) {
-                request.getRequestDispatcher("/WEB-INF/jsp/main.jsp").forward(request, response);
+                response.sendRedirect("/WEB-INF/jsp/main.jsp");
                 System.out.println("register success");
 
 
@@ -61,7 +61,10 @@ public class RegisterServlet extends HttpServlet {
 
 
             } else {
-                out.println("<h3>注册失败，请重试！</h3>");
+
+                //这个还要看看
+                request.setAttribute("errorMessage", "Registration failed. Please try again.");
+                request.getRequestDispatcher("register.jsp").forward(request, response);
             }
         }
     }

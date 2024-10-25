@@ -4,6 +4,7 @@ import com.happydog.model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDao {
@@ -31,4 +32,25 @@ public class UserDao {
             return false;
         }
     }
+    public boolean checkLogin(String username,String password){
+        String sql = "SELECT * FROM account WHERE username = ? AND password = ?";
+
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+
+            // 执行查询
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // 如果结果集中有数据，说明用户名和密码匹配
+                return rs.next(); // 返回 true 如果找到了匹配的用户
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // 出现异常时返回 false
+        }
+    }
+
 }
