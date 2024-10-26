@@ -68,6 +68,9 @@
 
         <button type="submit">注册</button>
     </form>
+    <a href="login">返回登录</a>
+
+
 </div>
 </body>
 </html>

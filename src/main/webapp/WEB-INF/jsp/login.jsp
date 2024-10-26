@@ -47,15 +47,20 @@
 <div class="login-container">
     <h2>用户登录</h2>
     
-    <form action="loginServlet" method="post">
+    <form action="login" method="post">
         <label for="username">用户名:</label>
         <input type="text" id="username" name="username" required>
 
         <label for="password">密码:</label>
         <input type="password" id="password" name="password" required>
 
-        <button type="submit">登录</button>
+        <button type="submit" name="action" value="login">登录</button>
     </form>
+
+        <a href="register">返回注册
+        </a>
+
+
 </div>
 </body>
 </html>

@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-@WebServlet("/")
+@WebServlet("/main")
 public class MainServlet extends HttpServlet {
     private  static final Logger logger=Logger.getLogger(LoginServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("request main page");
+
+        request.getRequestDispatcher("/WEB-INF/jsp/main.jsp").forward(request, response);
 
 
     }

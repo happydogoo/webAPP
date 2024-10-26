@@ -17,7 +17,7 @@
 
     <!--访问localhost默认加载登录页面 -->
     <welcome-file-list>
-        <welcome-file>jsp/login.jsp</welcome-file>
+        <welcome-file>main</welcome-file>
     </welcome-file-list>
 
 </web-app>
