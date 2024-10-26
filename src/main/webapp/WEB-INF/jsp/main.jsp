@@ -139,6 +139,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
 <jsp:include page="/WEB-INF/jsp/common/mainHeader.jsp"></jsp:include>
 <div class="divide">
     <div class=" category-title">分类</div>
@@ -195,6 +196,10 @@
         leftText.textContent = leftImages[index].dataset.text;
         rightText.textContent = rightImages[index].dataset.text;
     }
+=======
+<jsp:include page="common/mainHeader.jsp" />
+<a>123123</a>
+>>>>>>> c0216600519ba54e2ee15b87611e3c661152911a
 
     // 初始化轮播
     cycleImages();
