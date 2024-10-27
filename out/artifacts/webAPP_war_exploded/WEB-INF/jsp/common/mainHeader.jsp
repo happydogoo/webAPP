@@ -25,8 +25,6 @@
 
         .top-menu {
             display: flex;
-            flex-direction: row;
-            gap: 20px;
             position: absolute;
             top: 2%;
             right: 10%;
@@ -34,24 +32,13 @@
             height: 4%;
 
             opacity: 0.9;
-            padding: 0px;
+            padding: 10px;
             box-sizing: border-box;
         }
 
         .menu-item {
             color: #fff;
             margin: 2%;
-
-        }
-        .menu-item a {
-            color: black; /* 自定义文字颜色 */
-            text-decoration: none; /* 去掉下划线 */
-            font-size: 16px; /* 设置字体大小 */
-        }
-
-        /* 悬停效果 */
-        .menu-item a:hover {
-            color: #ff9900; /* 悬停时的颜色 */
         }
 
         .search {
