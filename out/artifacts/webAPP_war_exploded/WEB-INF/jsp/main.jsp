@@ -6,19 +6,18 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <style>
-
         .divide {
             display: flex;
             position: absolute;
             /* 使用绝对定位 */
-            top: 8%;
+            top: 7%;
             /* 从顶部10%的位置开始 */
             left: 0;
             /* 从左侧开始 */
             width: 100%;
             /* 宽度占满整个容器 */
-            height: 7%;
-
+            height: 70px;
+            /* 高度为1像素 */
             background-color: #000000;
             /* 背景颜色为白色 */
             opacity: 0.5;
@@ -29,9 +28,8 @@
         }
 
         .divide-item {
-            position: relative;
-            width: 10%;
-            height: 80%;
+            width: 100px;
+            height: 50px;
             background-color: #0f0c0c;
             color: #fff;
             margin: 2%;
@@ -41,21 +39,20 @@
             /* 垂直居中文本 */
             justify-content: center;
             /* 水平居中文本 */
-            font-size: 1vw;
         }
 
-        /* .category-title {
+        .category-title {
             position: absolute;
             left: 60px;
-
+            /* 调整这个值来改变标题的位置 */
             color: #fff;
             margin: 2%;
 
             align-items: center;
-
+            /* 垂直居中文本 */
             justify-content: center;
-
-        } */
+            /* 水平居中文本 */
+        }
 
 
         .leftbox {
@@ -94,11 +91,10 @@
             position: relative;
             height: 60%;
             /* 设置图片部分的高度为盒子的60% */
-            /* background-image: url('image.png'); */
-            /* 设置图片 */
+            /*background-image: url('image.png');*/
+            /*!* 设置图片 *!*/
             background-size: cover;
 
-            /* 填充图片，不留空白 */
             background-position: center;
             /* 图片居中显示 */
             border-radius: 15px 15px 0 0;
@@ -141,7 +137,6 @@
             /* 边框和内边距包含在宽度内 */
         }
     </style>
-
 </head>
 <body>
 

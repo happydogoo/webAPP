@@ -8,73 +8,88 @@
     <title>Main Menu</title>
     <style>
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
 
-        .w {
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            background: rgba(51, 51, 51, 1);
-        }
+            .w {
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+                background: rgba(51, 51, 51, 1);
+            }
 
-        .top-menu {
-            display: flex;
-            position: absolute;
-            top: 2%;
-            right: 10%;
-            width: 35%;
-            height: 4%;
 
-            opacity: 0.9;
-            padding: 10px;
-            box-sizing: border-box;
-        }
+            .top-menu {
+                display: flex;
+                position: relative;
+                top: 2%;
+                left: 65%;
+                width: 35%;
+                height: 10%;
 
-        .menu-item {
-            color: #fff;
-            margin: 2%;
-        }
+                opacity: 0.9;
+                padding: 1%;
+                box-sizing: border-box;
+            }
 
-        .search {
-            opacity: 1;
+            menu-item {
 
-            color: #fff;
-            padding: 10px;
-            /* 添加一些内边距 */
-            box-sizing: border-box;
-            /* 内边距包含在宽度和高度内 */
-        }
+                width: 15%;
+                font-size: 0.9vw;
+                color: #fff;
+                margin: 2%;
+            }
+            .menu-item a {
+                color: black; /* 自定义文字颜色 */
+                text-decoration: none; /* 去掉下划线 */
+                font-size: 16px; /* 设置字体大小 */
+            }
 
-        .Login {
-            top: -8px;
+            /* 悬停效果 */
+            .menu-item a:hover {
+                color: #ff9900; /* 悬停时的颜色 */
+            }
+
+            .search {
+                opacity: 1;
+                font-size: 0.9vw;
+
+                color: #fff;
+                /* padding: 10px; */
+                /* 添加一些内边距 */
+                box-sizing: border-box;
+                /* 内边距包含在宽度和高度内 */
+            }
+
+            .Login{
+            /* top: -8px; */
             /* 向上移动5px */
-            position: relative;
-            /* 添加相对定位 */
+            font-size: 0.9vw;
             background: red;
-            width: 112px;
-            height: 40px;
-        }
-    </style>
+            width: 100%;
+            height: 75%;
+            }
+        </style>
 </head>
 
 <body>
 <div class="w">
     <div class="top-menu">
-        <div class="menu-item">折扣</div>
-        <div class="menu-item">商品</div>
-        <div class="menu-item">宠物食品</div>
-        <div class="menu-item">联系我们</div>
-        <div class="menu-item">购物车</div>
-        <div class="search">搜索</div>
+
+        <div class="menu-item"><a href="">商品</a></div>
+        <div class="menu-item"><a href="/petfood">宠物食品</a></div>
+        <div class="menu-item"><a href="/contact">联系我们</a></div>
+        <div class="menu-item"><a href="/cart">购物车</a></div>
+        <div class="search"><a href="/search">搜索</a></div>
+
         <div class="menu-item">
 
-            <button class="Login" onclick="location.href='login.jsp';">登录</button>
+            <button class="Login" onclick="location.href='login';">登录</button>
         </div>
     </div>
 </div>

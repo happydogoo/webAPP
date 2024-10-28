@@ -31,19 +31,29 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userName=request.getParameter("username");
-        String password=request.getParameter("password");
-        boolean loginResult= userDao.checkLogin(userName,password);
-        if(loginResult){
-            response.sendRedirect("/WEB-INF/jsp/main.jsp");
-            HttpSession session=request.getSession();
-            session.setAttribute("username",userName);
-            session.setAttribute("loginStatus",true);
 
+        //要根据post的action方法来进行区分
+        String action=request.getParameter("action");
+
+        System.out.println("loginservlet doPost");
+        if(action.equals("login")) {
+            System.out.println("loginServlet try login");
+            String userName = request.getParameter("username");
+            String password = request.getParameter("password");
+            boolean loginResult = userDao.checkLogin(userName, password);
+            if (loginResult) {
+                System.out.println("pwd correct");
+                response.sendRedirect("/webAPP/main");
+                HttpSession session = request.getSession();
+                session.setAttribute("username", userName);
+                session.setAttribute("loginStatus", true);
+
+            }
+            else{
+                System.out.println("pwd incorrect");
+            }
         }
 
 
-        // 可以处理表单提交的逻辑，然后再转发到 JSP
-        doGet(request, response);
     }
 }
