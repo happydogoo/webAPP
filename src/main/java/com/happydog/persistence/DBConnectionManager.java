@@ -1,8 +1,6 @@
 package com.happydog.persistence;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBConnectionManager {
 
@@ -19,5 +17,55 @@ public class DBConnectionManager {
         String username = "root";
         String password = "123456";
         return DriverManager.getConnection(url, username, password);
+    }
+    public static void close(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("关闭数据库连接失败！");
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void close(Statement statement) {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("关闭Statement失败！");
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void close(PreparedStatement preparedStatement) {
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("关闭PreparedStatement失败！");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 关闭ResultSet对象
+     *
+     * @param resultSet 查询结果集对象
+     */
+    public static void close(ResultSet resultSet) {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("关闭ResultSet失败！");
+            e.printStackTrace();
+        }
     }
 }

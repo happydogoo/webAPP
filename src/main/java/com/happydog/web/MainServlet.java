@@ -16,7 +16,7 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("request main page");
 
-        request.getRequestDispatcher("/WEB-INF/jsp/main.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/Main.jsp").forward(request, response);
 
 
     }

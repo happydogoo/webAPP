@@ -65,7 +65,7 @@ public class RegisterServlet extends HttpServlet {
 
                 //这个还要看看
                 request.setAttribute("errorMessage", "Registration failed. Please try again.");
-                request.getRequestDispatcher("register.jsp").forward(request, response);
+                request.getRequestDispatcher("Register.jsp").forward(request, response);
             }
         }
     }
@@ -73,7 +73,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("request register");
-           request.getRequestDispatcher("/WEB-INF/jsp/register.jsp").forward(request, response);
+           request.getRequestDispatcher("/WEB-INF/jsp/Register.jsp").forward(request, response);
 
     }
 

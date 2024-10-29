@@ -141,7 +141,6 @@
             /* 边框和内边距包含在宽度内 */
         }
     </style>
-
 </head>
 <body>
 
@@ -149,10 +148,10 @@
 <div class="divide">
     <div class=" category-title">分类</div>
     <div class="divide-item "></div>
-    <div class="divide-item">狗</div>
-    <div class="divide-item">狗</div>
-    <div class="divide-item">狗</div>
-    <div class="divide-item">狗</div>
+    <div class="divide-item">狗狗</div>
+    <div class="divide-item">小猫</div>
+    <div class="divide-item">鸟</div>
+    <div class="divide-item">金鱼</div>
 </div>
 <div class="leftbox">
     <div class="image-section">

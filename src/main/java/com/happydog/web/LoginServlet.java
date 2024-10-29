@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         System.out.println("请求login页面");
         logger.fine("请求login页面");
-        // 转发请求到 /WEB-INF/jsp/login.jsp
-        request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+        // 转发请求到 /WEB-INF/jsp/Login.jsp
+        request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
 
     }
 
