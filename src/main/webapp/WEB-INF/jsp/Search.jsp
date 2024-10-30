@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/jsp/common/mainHeader.jsp">
+<jsp:include page="/WEB-INF/jsp/common/MainHeader.jsp"/>
 
 </body>
 </html>

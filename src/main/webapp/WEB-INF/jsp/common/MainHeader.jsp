@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
     <style>
+
         html,
         body {
             width: 100%;
@@ -25,59 +26,58 @@
         .top-menu {
             display: flex;
             position: relative;
-            top: 2%;
-            left: 65%;
+            top: 0%;
+            left: 60%;
             width: 35%;
-            min-height: 50px; /* 使用 min-height 自适应内容高度 */
+            height: 10%;
+            align-items: center;
             opacity: 0.9;
             padding: 1%;
             box-sizing: border-box;
-            align-items: center; /* 垂直居中对齐 */
-        }
-
-        .avatar {
-
-            position: absolute;
-            left: 1px;
-            width: 50px;
-            height: 50px;
-            border-radius: 1000px;
-            background: url(https://img.js.design/assets/img/67131bf63c6b1508d8af46e4.jpg#9f819da36e47ad2c6b0787e97cf236e7) no-repeat center center;
-            background-size: cover;
-            border: 1px solid rgba(0, 0, 0, 1);
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-            margin-right: 18px; /* 控制头像与菜单项的间距 */
         }
 
         .menu-item {
+
             width: 15%;
             font-size: 0.9vw;
             color: #fff;
             margin: 2%;
         }
 
-        .menu-item a {
-            color: black;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-        .menu-item a:hover {
-            color: #ff9900;
-        }
-
         .search {
             opacity: 1;
             font-size: 0.9vw;
+            width: 10%;
             color: #fff;
+            /* padding: 10px; */
+            /* 添加一些内边距 */
             box-sizing: border-box;
+            /* 内边距包含在宽度和高度内 */
         }
 
         .Login {
+
+            /* top: -8px; */
+            /* 向上移动5px */
             font-size: 0.9vw;
             background: red;
             width: 100%;
             height: 75%;
+        }
+        .menu-item a {
+            color: #fff; /* 设置字体颜色 */
+            text-decoration: none; /* 去除下划线 */
+        }
+
+        .menu-item a:hover {
+            color: #aaa; /* 鼠标悬停时变色 */
+        }
+        .search a{
+            color: #fff; /* 设置字体颜色 */
+            text-decoration: none; /* 去除下划线 */
+        }
+        .search a:hover{
+            color: #aaa;
         }
     </style>
 </head>
@@ -85,14 +85,16 @@
 <body>
 <div class="w">
     <div class="top-menu">
-        <div class="avatar"></div>
+
         <div class="menu-item"><a href="">商品</a></div>
         <div class="menu-item"><a href="/petfood">宠物食品</a></div>
         <div class="menu-item"><a href="/contact">联系我们</a></div>
         <div class="menu-item"><a href="/cart">购物车</a></div>
         <div class="search"><a href="/search">搜索</a></div>
+
         <div class="menu-item">
-            <button class="Login" onclick="location.href='login';">登录</button>
+            <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
+
         </div>
     </div>
 </div>

@@ -31,11 +31,11 @@ public class CategoryService {
         return productDao.getProduct(productId);
     }
 
-    public List<Product> getProductListByCategory(String categoryId) {
-        return productDao.getProductListByCategory(categoryId);
+    public List<Product> getProductListByCategory(String category) {
+        return productDao.getProductListByCategory(category);
     }
 
-    // TODO enable using more than one keyword
+
     public List<Product> searchProductList(String keyword) {
         return productDao.searchProductList("%" + keyword.toLowerCase() + "%");
     }

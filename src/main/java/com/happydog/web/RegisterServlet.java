@@ -54,11 +54,8 @@ public class RegisterServlet extends HttpServlet {
                 System.out.println("register success");
 
 
-
                 //记得重定向
                 //这里要用session来保存状态
-
-
 
 
             } else {

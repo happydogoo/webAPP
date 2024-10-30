@@ -42,6 +42,7 @@ try{
             PreparedStatement preparedStatement=connection.prepareStatement(GET_CATEGORY);
             preparedStatement.setString(1, categoryId);
             ResultSet resultSet=preparedStatement.executeQuery();
+            System.out.println("execute query "+categoryId);
         if(resultSet.next()) {
             category = new Category();
             category.setCategoryId(resultSet.getString("categoryId"));
