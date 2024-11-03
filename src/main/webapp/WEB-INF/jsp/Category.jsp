@@ -46,15 +46,29 @@
 
         .container {
             display: flex;
+            align-items: center; /* 水平居中对齐 */
+            margin-top: 2%; /* 添加顶部间距 */
+
+        }
+        .container1 {
+            display: flex;
             flex-direction: column; /* 垂直排列 */
             align-items: center; /* 水平居中对齐 */
-            margin-top: 10%; /* 添加顶部间距 */
+            margin-top: 3%; /* 添加顶部间距 */
+        }
+        .container2 {
+            display: flex;
+
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 水平居中对齐 */
+            margin-top: 3%; /* 添加顶部间距 */
         }
 
         .leftbox, .rightbox {
+            position: relative;
             background-color: #f4f4f4;
-            width: 40%;
-            height: auto; /* 根据内容自适应高度 */
+            width: 60%;
+            height: 28%; /* 根据内容自适应高度 */
             overflow: hidden;
             border-radius: 15px;
             margin-bottom: 20px; /* 添加底部间距以分开盒子 */
@@ -111,7 +125,7 @@
                         <img src="${product.imageUrl}" alt="${product.description}" data-text="${product.description}" class="active">
                     </div>
                     <div class="text-section">
-                        <h3>${product.name}</h3>
+                        <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
                         <p>${product.description}</p>
                     </div>
                 </div>
@@ -123,7 +137,7 @@
                         <img src="${product.imageUrl}" alt="${product.description}" data-text="${product.description}" class="active">
                     </div>
                     <div class="text-section">
-                        <h3>${product.name}</h3>
+                        <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
                         <p>${product.description}</p>
                     </div>
                 </div>

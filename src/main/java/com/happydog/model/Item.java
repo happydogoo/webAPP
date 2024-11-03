@@ -21,6 +21,17 @@ public class Item implements Serializable {
     private Product product;
     private int quantity;
 
+    //若为true，则还没卖掉
+    private boolean cartStatus;
+
+    public boolean isCartStatus() {
+        return cartStatus;
+    }
+
+    public void setCartStatus(boolean cartStatus) {
+        this.cartStatus = cartStatus;
+    }
+
     public String getItemId() {
         return itemId;
     }

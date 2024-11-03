@@ -1,7 +1,6 @@
 package com.happydog.persistence;
 
 import com.happydog.model.Product;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,11 +10,11 @@ import java.util.List;
 public class ProductDao {
 
     private static final String GET_PRODUCT_LIST_BY_CATEGORY =
-            "SELECT NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE CATEGORY = ?";
+            "SELECT PRODUCTID AS productId, NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE CATEGORY = ?";
     private static final String GET_PRODUCT =
-            "SELECT NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME = ?";
+            "SELECT PRODUCTID AS productId, NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME = ?";
     private static final String SEARCH_PRODUCT_LIST =
-            "SELECT NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME LIKE ? OR DESCN LIKE ?";
+            "SELECT PRODUCTID AS productId, NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME LIKE ? OR DESCN LIKE ?";
 
     public List<Product> getProductListByCategory(String category) {
         List<Product> productList = new ArrayList<>();
@@ -26,9 +25,10 @@ public class ProductDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
+                product.setProductId(resultSet.getString("productId")); // 设置 productId
                 product.setName(resultSet.getString("NAME"));
                 product.setDescription(resultSet.getString("description"));
-                product.setImageUrl(resultSet.getString("imageUrl"));  // 设置 imageUrl
+                product.setImageUrl(resultSet.getString("imageUrl"));
                 productList.add(product);
             }
             DBConnectionManager.close(resultSet);
@@ -49,9 +49,10 @@ public class ProductDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 product = new Product();
+                product.setProductId(resultSet.getString("productId")); // 设置 productId
                 product.setName(resultSet.getString("NAME"));
                 product.setDescription(resultSet.getString("description"));
-                product.setImageUrl(resultSet.getString("imageUrl"));  // 设置 imageUrl
+                product.setImageUrl(resultSet.getString("imageUrl"));
             }
             DBConnectionManager.close(resultSet);
             DBConnectionManager.close(preparedStatement);
@@ -73,9 +74,10 @@ public class ProductDao {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
+                product.setProductId(resultSet.getString("productId")); // 设置 productId
                 product.setName(resultSet.getString("NAME"));
                 product.setDescription(resultSet.getString("description"));
-                product.setImageUrl(resultSet.getString("imageUrl"));  // 设置 imageUrl
+                product.setImageUrl(resultSet.getString("imageUrl"));
                 productList.add(product);
             }
             DBConnectionManager.close(resultSet);

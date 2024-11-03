@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Menu</title>
     <style>
-
         html,
         body {
             width: 100%;
@@ -16,12 +14,8 @@
             padding: 0;
         }
 
-        .w {
-            width: 100%;
-            height: 100%;
-            opacity: 1;
-            background: rgba(51, 51, 51, 1);
-        }
+
+
 
         .top-menu {
             display: flex;
@@ -83,21 +77,16 @@
 </head>
 
 <body>
-<div class="w">
-    <div class="top-menu">
 
-        <div class="menu-item"><a href="">商品</a></div>
-        <div class="menu-item"><a href="/petfood">宠物食品</a></div>
-        <div class="menu-item"><a href="/contact">联系我们</a></div>
-        <div class="menu-item"><a href="/cart">购物车</a></div>
-        <div class="search"><a href="/search">搜索</a></div>
-
-        <div class="menu-item">
-            <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
-
-        </div>
+<div class="top-menu">
+    <div class="menu-item"><a href="">商品</a></div>
+    <div class="menu-item"><a href="/petfood">宠物食品</a></div>
+    <div class="menu-item"><a href="/contact">联系我们</a></div>
+    <div class="menu-item"><a href="/cart">购物车</a></div>
+    <div class="search"><a href="/search">搜索</a></div>
+    <div class="menu-item">
+        <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
     </div>
 </div>
 </body>
-
 </html>

@@ -62,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
 
                 //这个还要看看
                 request.setAttribute("errorMessage", "Registration failed. Please try again.");
-                request.getRequestDispatcher("Register.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB_INF/jsp/Register.jsp").forward(request, response);
             }
         }
     }

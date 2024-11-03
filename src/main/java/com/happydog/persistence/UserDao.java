@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class UserDao {
 
     public boolean saveUser(User user) {
-        String sql = "INSERT INTO account (email, username, address, phone, password) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO account (email, username, add1, phone, password) VALUES (?, ?, ?, ?, ?)";
 
          try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
