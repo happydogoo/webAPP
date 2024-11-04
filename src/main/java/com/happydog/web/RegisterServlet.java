@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             if (isSaved) {
-                response.sendRedirect("/webAPP[=**-" +
+                response.sendRedirect("/webAPP/" +
                         "login");
                 System.out.println("register success");
 

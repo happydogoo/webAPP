@@ -116,6 +116,7 @@
 </div>
 
 <div class="container">
+    <div class="container1">
     <c:forEach var="product" items="${productList}" varStatus="status">
         <c:choose>
             <c:when test="${status.index % 2 == 0}">
@@ -130,8 +131,14 @@
                     </div>
                 </div>
             </c:when>
-            <c:otherwise>
-                <!-- 右侧显示的商品信息框 -->
+        </c:choose>
+    </c:forEach>
+    </div>
+    <div class="container2">
+        <c:forEach var="product" items="${productList}" varStatus="status">
+            <c:choose>
+                <c:when test="${status.index % 2 == 1}">
+
                 <div class="rightbox">
                     <div class="image-section">
                         <img src="${product.imageUrl}" alt="${product.description}" data-text="${product.description}" class="active">
@@ -141,9 +148,10 @@
                         <p>${product.description}</p>
                     </div>
                 </div>
-            </c:otherwise>
+                </c:when>
         </c:choose>
     </c:forEach>
+</div>
 </div>
 
 <script>

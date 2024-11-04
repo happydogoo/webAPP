@@ -3,6 +3,7 @@ package com.happydog.web;
 import com.happydog.model.Cart;
 import com.happydog.model.Item; // 假设有一个 Item 类
 import com.happydog.model.Product;
+import com.happydog.service.CartService;
 import com.happydog.service.ProductService;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class ProductServlet extends HttpServlet {
     private static final Logger logger = Logger.getLogger(ProductServlet.class.getName());
     private ProductService productService = new ProductService();
-
+    private CartService cartService=new CartService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,6 +35,8 @@ public class ProductServlet extends HttpServlet {
                 cart = new Cart();
                 session.setAttribute("cart", cart);
             }
+            String username=(String)session.getAttribute("username");
+            cartService.addItemToCart(itemId,username);
             request.getRequestDispatcher("/WEB-INF/jsp/Product.jsp").forward(request, response);
 
 

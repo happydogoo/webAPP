@@ -15,6 +15,9 @@
 <head>
     <title>购物车</title>
     <style>
+        body{
+            background: #f0f0f0;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -56,16 +59,26 @@
     <%
         if (cartItems != null && !cartItems.isEmpty()) {
             for (Item item : cartItems) {
-                int quantity = item.getQuantity(); // 假设 Item 有 getQuantity() 方法
+                //暂时还没做多个数量的购物车功能
+                int quantity = 1; // 假设 Item 有 getQuantity() 方法
                 BigDecimal price = item.getListPrice(); // 假设 ListPrice 是 BigDecimal
                 BigDecimal itemTotal = price.multiply(BigDecimal.valueOf(quantity)); // 计算每个商品的总价
                 totalPrice = totalPrice.add(itemTotal); // 累加总价
+                String itemId=item.getItemId();
+
     %>
     <tr>
         <td><%= item.getItemId() %></td>
         <td><%= item.getAttribute1() %></td>
         <td><%= price %></td>
         <td><%= quantity %></td> <!-- 显示数量 -->
+        <td>
+            <form  method="post">
+                <input type="hidden" name="type" value="removeFromCart">
+                <input type="hidden" name="itemId" value="<%= item.getItemId() %>">
+                <input type="submit" value="clear">
+            </form>
+        </td>
     </tr>
     <%
         }

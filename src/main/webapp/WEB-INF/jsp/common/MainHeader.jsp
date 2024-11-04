@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +14,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
+            background: rgba(51, 51, 51, 1);
         }
 
 
@@ -79,11 +82,11 @@
 <body>
 
 <div class="top-menu">
-    <div class="menu-item"><a href="">商品</a></div>
-    <div class="menu-item"><a href="/petfood">宠物食品</a></div>
-    <div class="menu-item"><a href="/contact">联系我们</a></div>
-    <div class="menu-item"><a href="/cart">购物车</a></div>
-    <div class="search"><a href="/search">搜索</a></div>
+    <div class="menu-item"><a href="/webAPP">商品</a></div>
+    <div class="menu-item"><a href="/webAPP/petfood">宠物食品</a></div>
+    <div class="menu-item"><a href="/webAPP/contact">联系我们</a></div>
+    <div class="menu-item"><a href="/webAPP/cart">购物车</a></div>
+    <div class="search"><a href="/webAPP/search">搜索</a></div>
     <div class="menu-item">
         <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
     </div>

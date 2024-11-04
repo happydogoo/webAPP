@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("请求12login页面");
+        System.out.println("请求login页面");
         logger.fine("请求login页面");
         // 转发请求到 /WEB-INF/jsp/Login.jsp
         request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             boolean loginResult = userDao.checkLogin(userName, password);
             if (loginResult) {
                 System.out.println("pwd correct");
-                response.sendRedirect("/webAPP/Main");
+                response.sendRedirect("/webAPP/");
                 HttpSession session = request.getSession();
                 session.setAttribute("username", userName);
                 session.setAttribute("loginStatus", true);

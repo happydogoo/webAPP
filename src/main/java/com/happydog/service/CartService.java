@@ -22,11 +22,9 @@ public class CartService {
 
     public boolean addItemToCart(String itemId, String username) {
 
-
         Item item=itemDao.getItem(itemId);
         return cartDao.addItemToCart(itemId, username,item.getListPrice());
     }
-
     // 将购物车中的商品标记为已售出
     public boolean sellItem(String itemId, String username) {
         return cartDao.sellItem(itemId, username);
@@ -41,6 +39,7 @@ public class CartService {
 
     // 移除购物车中的指定商品
     public boolean removeItemFromCart(String itemId, String username) {
+        System.out.println("delete database cart"+username+itemId);
         return cartDao.removeItemFromCart(itemId, username);
     }
 

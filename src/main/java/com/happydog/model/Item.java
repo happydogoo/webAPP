@@ -24,6 +24,7 @@ public class Item implements Serializable {
     //若为true，则还没卖掉
     private boolean cartStatus;
 
+
     public boolean isCartStatus() {
         return cartStatus;
     }

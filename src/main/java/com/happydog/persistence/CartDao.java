@@ -23,7 +23,7 @@ public class CartDao {
 
             stmt.setString(1, itemId);
             stmt.setString(2, username);
-            stmt.setBigDecimal(4,price);
+            stmt.setBigDecimal(3,price);
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
 
@@ -38,7 +38,7 @@ public class CartDao {
         String sql = "DELETE FROM cart WHERE itemid = ? AND username = ?";
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        //    System.out.println("delete database cart"+username+itemId);
             stmt.setString(1, itemId);
             stmt.setString(2, username);
             int rowsAffected = stmt.executeUpdate();
