@@ -1,41 +1,74 @@
 package com.happydog.persistence;
 
-import java.math.BigDecimal;
+import com.happydog.model.Order;
+import com.happydog.persistence.DBConnectionManager;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckoutDao {
 
-    // 插入订单信息的方法
-    public boolean insertOrder(String username, Date orderDate, String shipAddr1, String shipZip,
-                               String shipCountry, String courier, BigDecimal totalPrice,
-                               String name, String creditCard, String cardType) {
-        String sql = "INSERT INTO orders (username, orderdate, shipaddr1, shipzip, shipcountry, " +
-                "courier, totalprice, shiptoname, creditcard, cardtype) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public boolean insertOrder(Order order) {
+        String sql = "INSERT INTO orders (username, orderdate, shipaddr1, shipzip, shipcountry, courier, " +
+                "totalprice, shiptoname, creditcard, cardtype, itemId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, username);
-            stmt.setDate(2, orderDate);
-            stmt.setString(3, shipAddr1);
-            stmt.setString(4, shipZip);
-            stmt.setString(5, shipCountry);
-            stmt.setString(6, courier);
-            stmt.setBigDecimal(7, totalPrice);
-            stmt.setString(8, name);
-            stmt.setString(9, creditCard);
-            stmt.setString(10, cardType);
+            stmt.setString(1, order.getUsername());
+            stmt.setDate(2, order.getOrderDate());
+            stmt.setString(3, order.getShipAddr1());
+            stmt.setString(4, order.getShipZip());
+            stmt.setString(5, order.getShipCountry());
+            stmt.setString(6, order.getCourier());
+            stmt.setBigDecimal(7, order.getTotalPrice());
+            stmt.setString(8, order.getShipToName());
+            stmt.setString(9, order.getCreditCard());
+            stmt.setString(10, order.getCardType());
+            stmt.setString(11, order.getItemId());
 
             int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0; // 如果影响的行数大于0，返回true
+            return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false; // 发生异常时返回false
+            return false;
         }
+    }
+    public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM orders"; // 查询所有订单的SQL语句
+
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Order order = new Order();
+                order.setOrderId(rs.getString("orderid")); // 假设有getOrderId方法
+                order.setUsername(rs.getString("username"));
+                order.setOrderDate(rs.getDate("orderdate"));
+                order.setShipAddr1(rs.getString("shipaddr1"));
+                order.setShipZip(rs.getString("shipzip"));
+                order.setShipCountry(rs.getString("shipcountry"));
+                order.setCourier(rs.getString("courier"));
+                order.setTotalPrice(rs.getBigDecimal("totalprice"));
+                order.setShipToName(rs.getString("shiptoname"));
+                order.setCreditCard(rs.getString("creditcard"));
+                order.setCardType(rs.getString("cardtype"));
+                order.setItemId(rs.getString("itemId"));
+
+                orders.add(order); // 添加到订单列表中
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders; // 返回订单列表
     }
 }

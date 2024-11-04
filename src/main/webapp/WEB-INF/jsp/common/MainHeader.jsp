@@ -86,7 +86,11 @@
     <div class="menu-item"><a href="/webAPP/petfood">宠物食品</a></div>
     <div class="menu-item"><a href="/webAPP/contact">联系我们</a></div>
     <div class="menu-item"><a href="/webAPP/cart">购物车</a></div>
-    <div class="search"><a href="/webAPP/search">搜索</a></div>
+    <div class="menu-item"><a href="/webAPP/order">订单</a></div>
+    <form action="search" method="get">
+        <input type="text" name="query" placeholder="输入搜索内容" required>
+        <input type="submit" value="搜索">
+    </form>
     <div class="menu-item">
         <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
     </div>
