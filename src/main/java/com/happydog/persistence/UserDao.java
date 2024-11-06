@@ -6,11 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class UserDao {
 
     public boolean saveUser(User user) {
-        String sql = "INSERT INTO account (email, username, addr1, phone, password) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO account (email, username, addr1, phone, password,userid) VALUES (?, ?, ?, ?, ?,?)";
 
          try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -22,7 +23,7 @@ public class UserDao {
             pstmt.setString(3, user.getAddress());
             pstmt.setString(4, user.getPhone());
             pstmt.setString(5, user.getPassword());
-
+            pstmt.setString(6, user.getUserID());
 
             int rowsAffected = pstmt.executeUpdate();
             return rowsAffected > 0; // 返回是否插入成功
@@ -52,5 +53,30 @@ public class UserDao {
             return false; // 出现异常时返回 false
         }
     }
+
+
+    public String getUserId(String username) {
+        String sql = "SELECT userid FROM account WHERE username = ?"; // 确保 user_id 列在这里存在
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, username);
+
+            // 执行查询
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("userid"); // 返回查询到的 user_id
+                } else {
+                    return null; // 用户名未找到，返回 null
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null; // 出现异常时返回 null
+        }
+    }
+
+
 
 }

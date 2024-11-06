@@ -27,6 +27,7 @@ public class Order {
     private String itemId;         // 商品ID
     private int quantity;
 
+
     public int getQuantity() {
         return quantity;
     }

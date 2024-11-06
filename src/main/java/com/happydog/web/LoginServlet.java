@@ -46,6 +46,8 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect("/webAPP/");
                 HttpSession session = request.getSession();
                 session.setAttribute("username", userName);
+                String userId=userDao.getUserId(userName);
+                session.setAttribute("userId",userId);
                 session.setAttribute("loginStatus", true);
 
             }

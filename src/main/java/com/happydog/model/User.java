@@ -1,12 +1,12 @@
 package com.happydog.model;
 
 public class User {
-    private int userID;
+    private String userID;
     private String userEmail;
     private String userName;
     private String address;
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
@@ -68,12 +68,13 @@ public class User {
         this.preferences = preferences;
     }
 
-    public User(String userEmail, String userName, String address, String phone, String password) {
+    public User(String userEmail, String userName, String address, String phone, String password,String userID) {
         this.userEmail = userEmail;
         this.userName = userName;
         this.address = address;
         this.phone = phone;
         this.password = password;
+        this.userID=userID;
     }
 
     private String phone;

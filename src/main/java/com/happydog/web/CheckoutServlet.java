@@ -33,14 +33,13 @@ public class CheckoutServlet extends HttpServlet {
         String shipZip = request.getParameter("shipZip");
         String shipCountry = request.getParameter("shipCountry");
         String courier = request.getParameter("courier");
-        BigDecimal totalPrice = new BigDecimal(request.getParameter("totalPrice"));
         String name = request.getParameter("name"); // 修改为只获取名字
         String creditCard = request.getParameter("creditCard");
         String cardType = request.getParameter("cardType");
 
         String[] itemIds = request.getParameterValues("itemId");
         String[] itemQuantities = request.getParameterValues("itemQuantity");
-
+        String[] itemPrices = request.getParameterValues("itemPrice");
 
 
         Date orderDate = new Date(System.currentTimeMillis());
@@ -48,21 +47,24 @@ public class CheckoutServlet extends HttpServlet {
 
         for (int i = 0; i < itemIds.length; i++) {
         Order order = new Order();
-        order.setUsername(name);
+        order.setUsername((String)session.getAttribute("username"));
         order.setOrderDate(orderDate);
         order.setShipAddr1(shipAddr1);
         order.setShipZip(shipZip);
         order.setShipCountry(shipCountry);
         order.setCourier(courier);
-        order.setTotalPrice(totalPrice);
+
         order.setShipToName(name);
         order.setCreditCard(creditCard);
         order.setCardType(cardType);
         order.setItemId(itemIds[i]);
 
             int quantity = Integer.parseInt(itemQuantities[i]);
-            order.setQuantity(quantity); // 如果 Order 类中有设置数量的方法
+            BigDecimal price = new BigDecimal(itemPrices[i]);
 
+            order.setQuantity(quantity); // 如果 Order 类中有设置数量的方法
+order.setTotalPrice(price);
+            System.out.println("checkoutServlet insertOrder");
             checkoutDao.insertOrder(order);
 
 

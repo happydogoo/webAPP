@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OrderService {
     private CheckoutDao checkoutDao=new CheckoutDao();
-    public List<Order> getOrders(){return checkoutDao.getAllOrders();}
+    public List<Order> getOrders(String username){return checkoutDao.getAllOrders(username);}
 
 
 }

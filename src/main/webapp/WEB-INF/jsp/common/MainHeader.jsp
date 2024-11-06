@@ -83,8 +83,8 @@
 
 <div class="top-menu">
     <div class="menu-item"><a href="/webAPP">商品</a></div>
-    <div class="menu-item"><a href="/webAPP/petfood">宠物食品</a></div>
-    <div class="menu-item"><a href="/webAPP/contact">联系我们</a></div>
+<%--    <div class="menu-item"><a href="/webAPP/petfood">宠物食品</a></div>--%>
+<%--    <div class="menu-item"><a href="/webAPP/contact">联系我们</a></div>--%>
     <div class="menu-item"><a href="/webAPP/cart">购物车</a></div>
     <div class="menu-item"><a href="/webAPP/order">订单</a></div>
     <form action="search" method="get">

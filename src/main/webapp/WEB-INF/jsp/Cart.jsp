@@ -109,8 +109,8 @@
     <label for="courier">快递公司:</label>
     <input type="text" id="courier" name="courier" required><br><br>
 
-    <label for="totalPrice">总价格:</label>
-    <input type="text" id="totalPrice" name="totalPrice" required><br><br>
+
+    <input type="hidden" id="totalPrice" name="totalPrice"  value=<%= totalPrice %>>
 
     <label for="name">收件人姓名:</label>
     <input type="text" id="name" name="name" required><br><br>
@@ -126,9 +126,11 @@
     <%
         if (cartItems != null && !cartItems.isEmpty()) {
             for (Item item : cartItems) {
+                BigDecimal price = item.getListPrice(); // 获取每个商品的单价
     %>
     <input type="hidden" name="itemId" value="<%= item.getItemId() %>">
     <input type="hidden" name="itemQuantity" value="1"> <!-- 假设数量为1 -->
+    <input type="hidden" name="itemPrice" value="<%= price %>"> <!-- 每个商品的单价 -->
     <%
             }
         }

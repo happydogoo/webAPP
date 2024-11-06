@@ -107,6 +107,9 @@
     </style>
 </head>
 <body>
+
+<jsp:include page="/WEB-INF/jsp/common/MainHeader.jsp"/>
+
 <div class="divide">
     <div class="category-title">分类</div>
     <div class="divide-item"><a href="/webAPP/category?type=DOGS">狗狗</a></div>

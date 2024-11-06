@@ -66,6 +66,15 @@
         <label for="phone">电话:</label>
         <input type="text" id="phone" name="phone" required>
 
+        <div class="captcha-container">
+            <label for="captcha">验证码:</label>
+            <img src="${pageContext.request.contextPath}/captcha" alt="Captcha" class="captcha-image">
+        </div>
+
+        <!-- 输入验证码 -->
+        <input type="text" id="captcha" name="captcha" required>
+
+
         <button type="submit">注册</button>
     </form>
     <a href="login">返回登录</a>

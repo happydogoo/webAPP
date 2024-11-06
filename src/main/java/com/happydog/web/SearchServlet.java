@@ -1,7 +1,7 @@
 package com.happydog.web;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.http.*;
 
 
 import com.happydog.model.Item;
@@ -12,8 +12,6 @@ import com.happydog.service.ProductService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,6 +23,9 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String query = request.getParameter("query");
+        HttpSession session=request.getSession();
+        String username=(String)session.getAttribute("username");
+
         List<Product> searchResults = productService.searchProduct(query); // 假设你有一个搜索方法
 
         request.setAttribute("results", searchResults);

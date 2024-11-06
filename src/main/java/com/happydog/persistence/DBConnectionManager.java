@@ -68,4 +68,7 @@ public class DBConnectionManager {
             e.printStackTrace();
         }
     }
+
+    public static class LogDao {
+    }
 }

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
@@ -19,7 +20,9 @@ public class OrderServlet extends HttpServlet {
     private OrderService orderService=new OrderService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Order> orders = orderService.getOrders(); // 获取所有订单
+        HttpSession session=request.getSession();
+        String username=(String)session.getAttribute("username");
+        List<Order> orders = orderService.getOrders(username); // 获取所有订单
         request.setAttribute("orders", orders); // 将订单列表设置到请求属性中
 
         // 转发到 JSP 页面显示订单
