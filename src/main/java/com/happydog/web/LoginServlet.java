@@ -38,13 +38,22 @@ public class LoginServlet extends HttpServlet {
         System.out.println("loginservlet doPost");
         if(action.equals("login")) {
             System.out.println("loginServlet try login");
+            HttpSession session= request.getSession();
             String userName = request.getParameter("username");
             String password = request.getParameter("password");
+            String userInputCaptcha=request.getParameter("captcha");
+            String realCaptcha=(String) session.getAttribute("captcha");
+            if (userInputCaptcha == null || !userInputCaptcha.equalsIgnoreCase(realCaptcha)) {
+
+
+
+                return;
+            }
             boolean loginResult = userDao.checkLogin(userName, password);
             if (loginResult) {
                 System.out.println("pwd correct");
                 response.sendRedirect("/webAPP/");
-                HttpSession session = request.getSession();
+
                 session.setAttribute("username", userName);
                 String userId=userDao.getUserId(userName);
                 session.setAttribute("userId",userId);

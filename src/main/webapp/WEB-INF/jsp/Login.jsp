@@ -55,6 +55,11 @@
         <input type="password" id="password" name="password" required>
 
         <button type="submit" name="action" value="login">登录</button>
+        <div class="captcha-container">
+            <label for="captcha">验证码:</label>
+            <img src="${pageContext.request.contextPath}/captcha" alt="Captcha" class="captcha-image">
+        </div>
+        <input type="text" id="captcha" name="captcha" required>
     </form>
 
         <a href="register">返回注册

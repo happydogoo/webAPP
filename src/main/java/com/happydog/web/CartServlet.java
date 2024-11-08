@@ -32,7 +32,13 @@ public class CartServlet extends HttpServlet {
 
         if ("getCartPage".equals(type)) {
             HttpSession session=request.getSession();
-            String username= (String)session.getAttribute("username");
+            String username=(String)session.getAttribute("username");
+            System.out.println( "search from user"+username);
+            if(username==null){
+                System.out.println("sendRediret login from getCartPage");
+                response.sendRedirect("/webAPP/login");
+                return;
+            }
             System.out.println("try to fin uername"+username);
             List<Item>itemList=cartService.getUserCartItems(username);
 
@@ -42,12 +48,26 @@ public class CartServlet extends HttpServlet {
 
         } else if ("removeFromCart".equals(type)) {
             HttpSession session=request.getSession();
+            String username=(String)session.getAttribute("username");
+            System.out.println( "search from user"+username);
+            if(username==null){
+                System.out.println("sendRediret login from removeFromCart");
+                response.sendRedirect("/webAPP/login");
+                return;
+            }
             String itemId=request.getParameter("itemId");
-            String username= (String)session.getAttribute("username");
             System.out.println("清除Cart中的"+itemId);
             cartService.removeItemFromCart(itemId, username);
             response.sendRedirect("/webAPP/cart");
         } else{
+            HttpSession session=request.getSession();
+            String username=(String)session.getAttribute("username");
+            System.out.println( "search from user"+username);
+            if(username==null){
+                System.out.println("sendRediret login from removeFromCart");
+                response.sendRedirect("/webAPP/login");
+                return;
+            }
             request.getRequestDispatcher("/WEB-INF/jsp/Cart.jsp").forward(request, response);
         }
 

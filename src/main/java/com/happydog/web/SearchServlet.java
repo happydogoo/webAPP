@@ -25,6 +25,12 @@ public class SearchServlet extends HttpServlet {
         String query = request.getParameter("query");
         HttpSession session=request.getSession();
         String username=(String)session.getAttribute("username");
+        System.out.println( "search from user"+username);
+        if(username==null){
+            System.out.println("sendRediret login from search");
+            response.sendRedirect("/webAPP/login");
+            return;
+        }
 
         List<Product> searchResults = productService.searchProduct(query); // 假设你有一个搜索方法
 

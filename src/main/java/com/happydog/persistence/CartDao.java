@@ -14,6 +14,7 @@ import com.happydog.persistence.DBConnectionManager;
 
 
 public class CartDao {
+    private ItemDao itemDao=new ItemDao();
 
     // 添加商品到购物车
     public boolean addItemToCart(String itemId, String username, BigDecimal price) {
@@ -77,13 +78,14 @@ public class CartDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+
                 String itemId = resultSet.getString("itemid");
                 int status = resultSet.getInt("status"); // 假设 status 是 int 类型
                 BigDecimal price = resultSet.getBigDecimal("price"); // 假设 price 是 BigDecimal 类型
-
+                if(status==1){
                 // 创建 Item 对象并添加到列表中
-                Item item = new Item();
-                item.setItemId(itemId);
+                    Item item =itemDao.getItem(itemId);
+                
                 if(status==0) {
                     item.setCartStatus(false);
                 }
@@ -92,6 +94,7 @@ public class CartDao {
                 }
                 item.setListPrice(price);
                 itemList.add(item);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace(); // 错误处理，可以记录日志或抛出自定义异常

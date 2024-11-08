@@ -10,30 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e781b137-525c-43eb-bf74-724707be1b67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/Log.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/LogDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/service/LogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/util/CaptchaUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/CaptchaServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/Filter/CartFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/Filter/CheckoutFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/Filter/ProductFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CheckoutDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CheckoutDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/DBConnectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/DBConnectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/service/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CartDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/service/ItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/service/ItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/CartServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/CheckoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/CheckoutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/Filter/CartFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/Filter/CartFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/LoginServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/OrderServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/OrderServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/RegisterServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/RegisterServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Results.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Results.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/MainHeader.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/MainHeader.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/ProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/SearchServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/SearchServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,6 +216,8 @@
       <workItem from="1730729928403" duration="6055000" />
       <workItem from="1730804150836" duration="4976000" />
       <workItem from="1730816267721" duration="9337000" />
+      <workItem from="1730858600754" duration="5465000" />
+      <workItem from="1731047647800" duration="1650000" />
     </task>
     <servers />
   </component>

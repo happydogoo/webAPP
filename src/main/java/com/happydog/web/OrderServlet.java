@@ -22,6 +22,12 @@ public class OrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();
         String username=(String)session.getAttribute("username");
+
+        if(username==null){
+            System.out.println("sendRediret login from order");
+            response.sendRedirect("/webAPP/login");
+            return;
+        }
         List<Order> orders = orderService.getOrders(username); // 获取所有订单
         request.setAttribute("orders", orders); // 将订单列表设置到请求属性中
 

@@ -40,7 +40,7 @@ public class CartFilter implements Filter {
             String targetId= itemId;
             // 记录用户点击商品的日志
             Log log=new Log(userId, username, "a", "Cart",  targetId, targetId, clientIp);
-            logService.recordProductClickLog(log);
+            logService.addItemToCartLog(log);
         }
 
         // 继续请求处理，传递给下一个过滤器或最终的 Servlet

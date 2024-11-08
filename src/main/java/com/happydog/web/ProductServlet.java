@@ -30,20 +30,24 @@ public class ProductServlet extends HttpServlet {
             System.out.println("prouductServlet");
             String itemId = request.getParameter("itemId");
             HttpSession session = request.getSession();
+            String username=(String)session.getAttribute("username");
+
+            if(username==null){
+                System.out.println("sendRediret login from product");
+                response.sendRedirect("/webAPP/login");
+                return;
+            }
+
             Cart cart = (Cart) session.getAttribute("cart");
             if (cart == null) {
                 cart = new Cart();
                 session.setAttribute("cart", cart);
             }
-            String username=(String)session.getAttribute("username");
+
             cartService.addItemToCart(itemId,username);
             request.getRequestDispatcher("/WEB-INF/jsp/Product.jsp").forward(request, response);
 
 
-//        Item item = getItemById(itemId);
-//        if(item!=null){
-//            cart.addItem(item);
-//        }
         }
         else{
         String productId = request.getParameter("product");
@@ -60,7 +64,7 @@ public class ProductServlet extends HttpServlet {
         // 存入会话并转发到产品详情页面
         HttpSession session = request.getSession();
         session.setAttribute("product", productId);
-        session.setAttribute("itemList", itemList); // 存储 itemList
+        session.setAttribute("itemList", itemList);
         request.getRequestDispatcher("/WEB-INF/jsp/Product.jsp").forward(request, response);
 
 

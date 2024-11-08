@@ -2,6 +2,7 @@ package com.happydog.web;
 import com.happydog.model.Order;
 import com.happydog.persistence.CheckoutDao;
 import com.happydog.persistence.DBConnectionManager;
+import com.happydog.service.CartService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,11 +24,19 @@ public class CheckoutServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
         HttpSession session = request.getSession();
         CheckoutDao checkoutDao=new CheckoutDao();
+        CartService cartService=new CartService();
 
         String username = (String) session.getAttribute("username");
 
+        if(username==null){
+            System.out.println("sendRediret login from checkoutServlet");
+            response.sendRedirect("/webAPP/login");
+            return;
+        }
         // 获取表单中的订单信息
         String shipAddr1 = request.getParameter("shipAddr1");
         String shipZip = request.getParameter("shipZip");
@@ -63,9 +72,17 @@ public class CheckoutServlet extends HttpServlet {
             BigDecimal price = new BigDecimal(itemPrices[i]);
 
             order.setQuantity(quantity); // 如果 Order 类中有设置数量的方法
-order.setTotalPrice(price);
+        order.setTotalPrice(price);
             System.out.println("checkoutServlet insertOrder");
             checkoutDao.insertOrder(order);
+            try {
+                cartService.sellItem(itemIds[i],username);
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
+
+
 
 
 
