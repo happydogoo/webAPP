@@ -44,34 +44,39 @@
             color: #aaa; /* 鼠标悬停时变色 */
         }
 
-        .container {
-            display: flex;
-            align-items: center; /* 水平居中对齐 */
-            margin-top: 2%; /* 添加顶部间距 */
-
-        }
         .container1 {
             display: flex;
             flex-direction: column; /* 垂直排列 */
             align-items: center; /* 水平居中对齐 */
-            margin-top: 3%; /* 添加顶部间距 */
+            margin-top: 1.5%; /* 添加顶部间距 */
+            position: absolute;
+            height: 130%;
+            top: 15%;
+            left: 5%;
+            width: 40%;
         }
+
         .container2 {
             display: flex;
-
             flex-direction: column; /* 垂直排列 */
             align-items: center; /* 水平居中对齐 */
-            margin-top: 3%; /* 添加顶部间距 */
+            position: absolute;
+            margin-top: 1.5%; /* 添加顶部间距 */
+            height: 130%;
+            top: 15%;
+            left: 25%;
+            width: 40%;
         }
 
         .leftbox, .rightbox {
             position: relative;
+            top: auto;
             background-color: #f4f4f4;
-            width: 60%;
-            height: 28%; /* 根据内容自适应高度 */
+            width: 80%;
+            height: 30%; /* 根据内容自适应高度 */
             overflow: hidden;
-            border-radius: 15px;
-            margin-bottom: 20px; /* 添加底部间距以分开盒子 */
+            border-radius: 70px;
+            margin-bottom: 40px; /* 添加底部间距以分开盒子 */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
         }
 
@@ -88,7 +93,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 15px 15px 0 0;
-            opacity: 0;
+            opacity: 1;
             transition: opacity 0.5s ease-in-out;
         }
 
@@ -104,6 +109,17 @@
             padding: 15px;
             box-sizing: border-box;
         }
+
+        /* 修改所有链接的样式 */
+        a {
+            text-decoration: none; /* 去除下划线 */
+            color: inherit; /* 继承父元素颜色 */
+        }
+
+        a:hover {
+            color: #007bff; /* 鼠标悬停时变色为蓝色 */
+        }
+
     </style>
 </head>
 <body>
@@ -115,66 +131,39 @@
     <div class="divide-item"><a href="/webAPP/category?type=FISH">鱼</a></div>
 </div>
 
-<div class="container">
-    <div class="container1">
+<div class="container1">
     <c:forEach var="product" items="${productList}" varStatus="status">
         <c:choose>
             <c:when test="${status.index % 2 == 0}">
                 <!-- 左侧显示的商品信息框 -->
                 <div class="leftbox">
                     <div class="image-section">
-                        <img src="${product.imageUrl}" alt="${product.description}" data-text="${product.description}" class="active">
+                        <img src="${product.imageUrl}" >
                     </div>
                     <div class="text-section">
                         <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
-                        <p>${product.description}</p>
                     </div>
                 </div>
             </c:when>
         </c:choose>
     </c:forEach>
-    </div>
-    <div class="container2">
-        <c:forEach var="product" items="${productList}" varStatus="status">
-            <c:choose>
-                <c:when test="${status.index % 2 == 1}">
+</div>
 
+<div class="container2">
+    <c:forEach var="product" items="${productList}" varStatus="status">
+        <c:choose>
+            <c:when test="${status.index % 2 == 1}">
                 <div class="rightbox">
                     <div class="image-section">
-                        <img src="${product.imageUrl}" alt="${product.description}" data-text="${product.description}" class="active">
+                        <img src="${product.imageUrl}" >
                     </div>
                     <div class="text-section">
                         <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
-                        <p>${product.description}</p>
                     </div>
                 </div>
-                </c:when>
+            </c:when>
         </c:choose>
     </c:forEach>
 </div>
-</div>
-
-<script>
-    let leftImages = document.querySelectorAll('.leftbox .image-section img');
-    let rightImages = document.querySelectorAll('.rightbox .image-section img');
-    let index = 0;
-
-    function cycleImages() {
-        // 移除当前active类
-        leftImages[index].classList.remove("active");
-        rightImages[index].classList.remove("active");
-        // 更新index
-        index = (index + 1) % leftImages.length;
-        // 给下一张图片添加active类
-        leftImages[index].classList.add("active");
-        rightImages[index].classList.add("active");
-    }
-
-    // 初始化轮播
-    cycleImages();
-
-    // 每3秒切换一次图片
-    setInterval(cycleImages, 3000);
-</script>
 </body>
 </html>

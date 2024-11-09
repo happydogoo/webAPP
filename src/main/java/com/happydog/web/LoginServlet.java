@@ -45,6 +45,7 @@ public class LoginServlet extends HttpServlet {
             String realCaptcha=(String) session.getAttribute("captcha");
             if (userInputCaptcha == null || !userInputCaptcha.equalsIgnoreCase(realCaptcha)) {
 
+                sendErrorResponse(request, response, "验证码错误");
 
 
                 return;
@@ -66,5 +67,9 @@ public class LoginServlet extends HttpServlet {
         }
 
 
+    }private void sendErrorResponse(HttpServletRequest request, HttpServletResponse response, String message) throws IOException, ServletException {
+        request.setAttribute("errorMessage", message);
+        System.out.println("errorMesadawdaw"+message);
+        request.getRequestDispatcher("/WEB-INF/jsp/Login.jsp").forward(request, response);
     }
 }

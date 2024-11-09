@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +30,16 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
-        }
+        }.error-message {
+             background-color: #f8d7da;
+             color: #721c24;
+             padding: 10px;
+             border: 1px solid #f5c6cb;
+             border-radius: 5px;
+             margin: 10px 0;
+             display: none; /* 初始时隐藏 */
+             text-align: center;
+         }
         .register-container button {
             width: 100%;
             padding: 10px;
@@ -77,6 +88,26 @@
 
         <button type="submit">注册</button>
     </form>
+    <c:if test="${not empty errorMessage}">
+        <div id="errorMessage" class="error-message">
+            <c:out value="${errorMessage}" />
+        </div>
+    </c:if>
+    <script>
+    // 如果有错误信息，2秒后自动隐藏
+    window.onload = function() {
+        var errorMessage = document.getElementById("errorMessage");
+        if (errorMessage) {
+            // 显示错误信息
+            errorMessage.style.display = "block";
+
+            // 2秒后自动隐藏
+            setTimeout(function() {
+                errorMessage.style.display = "none";
+            }, 2000); // 2000ms = 2秒
+        }
+    };
+</script>
     <a href="login">返回登录</a>
 
 

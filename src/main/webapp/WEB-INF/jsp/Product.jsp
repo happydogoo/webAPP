@@ -10,6 +10,10 @@
         body{
             z-index: 1;
         }
+        .product-details{
+
+            /*left: 15%;*/
+        }
 
     </style>
 </head>
