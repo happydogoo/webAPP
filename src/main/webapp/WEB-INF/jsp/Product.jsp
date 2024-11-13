@@ -12,7 +12,14 @@
         }
         .product-details{
 
-            /*left: 15%;*/
+            display: flex;
+            flex-direction: column;
+            /*justify-content: center;*/
+            /*align-items: center;*/
+            margin-left: 5%;
+            height: 100vh;
+
+            color: #f0f0f0; /* 深灰色字体 */
         }
 
     </style>

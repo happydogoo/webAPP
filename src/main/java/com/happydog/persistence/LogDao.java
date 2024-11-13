@@ -13,6 +13,7 @@ public class LogDao {
 
     // 插入日志记录的方法
     public boolean insertLog(Log log) {
+
         boolean rowInserted = false;
 
         try (Connection connection = DBConnectionManager.getConnection();

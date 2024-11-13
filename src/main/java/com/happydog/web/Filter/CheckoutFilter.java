@@ -18,7 +18,7 @@ public class CheckoutFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // 初始化工作
+
     }
 
     @Override
@@ -35,26 +35,20 @@ public class CheckoutFilter implements Filter {
         String userId = (String) session.getAttribute("userId");
         String clientIp = httpRequest.getRemoteAddr();
 
-        // 获取所有请求参数（假设商品信息作为参数传递）
         Enumeration<String> parameterNames = httpRequest.getParameterNames();
-        StringBuilder productDetails = new StringBuilder();
 
         while (parameterNames.hasMoreElements()) {
             String paramName = parameterNames.nextElement();
-            String paramValue = httpRequest.getParameter(paramName);
-            productDetails.append(paramName).append(": ").append(paramValue).append(", ");
+
+            // 只处理 itemId 参数
+            if ("itemId".equals(paramName)) {
+                String itemId = httpRequest.getParameter(paramName);
+
+                // 创建并记录日志
+                Log log = new Log(userId, username, "生成订单", "Order", itemId, itemId, clientIp);
+                logService.checkoutLog(log); // 假设 checkoutLog() 方法能处理日志对象
+            }
         }
-
-        // 移除最后一个逗号和空格
-        if (productDetails.length() > 0) {
-            productDetails.setLength(productDetails.length() - 2);
-        }
-
-        // 记录用户结账的日志
-        Log log = new Log(userId, username, "订单", "Order", productDetails.toString(), productDetails.toString(), clientIp);
-        logService.checkoutLog(log); // 记录日志的方法需实现
-
-        // 继续请求处理，传递给下一个过滤器或最终的 Servlet
         chain.doFilter(request, response);
     }
 

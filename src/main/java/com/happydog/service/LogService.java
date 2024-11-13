@@ -15,7 +15,7 @@ public class LogService {
         log.setAction("添加购物车");
         logDao.insertLog(log);
     }
-    public void checkoutLog(Log log){
+    public void     checkoutLog(Log log){
         log.setAction("生成订单");
         logDao.insertLog(log);
     }

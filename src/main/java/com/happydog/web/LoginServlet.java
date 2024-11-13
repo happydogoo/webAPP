@@ -62,6 +62,7 @@ public class LoginServlet extends HttpServlet {
 
             }
             else{
+                sendErrorResponse(request,response,"密码错误");
                 System.out.println("pwd incorrect");
             }
         }

@@ -76,6 +76,23 @@ public class UserDao {
             return null; // 出现异常时返回 null
         }
     }
+    public boolean changePassword(String username, String newPassword, String currentPassword) {
+        String sql = "UPDATE account SET password = ? WHERE username = ? AND password = ?";
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, newPassword);
+            pstmt.setString(2, username);
+            pstmt.setString(3, currentPassword);
+
+            return pstmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 
 

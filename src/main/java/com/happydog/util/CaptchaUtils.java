@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class CaptchaUtils {
 
-    private static final int WIDTH = 80; // 图像宽度
+    private static final int WIDTH = 100; // 图像宽度
     private static final int HEIGHT = 40; // 图像高度
     private static final int LENGTH = 4; // 验证码字符数量
     private static final Random random = new Random(); // 用于生成随机数，便于设置rgb参数

@@ -1,12 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>登录界面</title>
+    <title>修改密码</title>
     <style>
         .error-message {
             background-color: #f8d7da;
@@ -22,7 +20,7 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
-        .login-container {
+        .container{
             width: 300px;
             margin: 0 auto;
             margin-top: 100px;
@@ -31,57 +29,39 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-        .login-container h2 {
+        .h2{
+            margin-top:20px ;
             text-align: center;
-            margin-bottom: 20px;
-        }
-        .login-container input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .login-container button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .login-container button:hover {
-            background-color: #45a049;
+
         }
     </style>
 </head>
-<body>
-<div class="login-container">
-    <h2>用户登录</h2>
+<body style="background-color: #ffffff !important;">
 
-    <form action="login" method="post">
-        <label for="username">用户名:</label>
-        <input type="text" id="username" name="username" required>
+<%--<jsp:include page="/WEB-INF/jsp/common/MainHeader.jsp"/>--%>
 
-        <label for="password">密码:</label>
-        <input type="password" id="password" name="password" required>
-        <div class="captcha-container">
-            <label for="captcha">验证码:</label>
-            <img src="${pageContext.request.contextPath}/captcha" alt="Captcha" class="captcha-image">
-        </div>
-        <input type="text" id="captcha" name="captcha" required>
-        <button type="submit" name="action" value="login">登录</button>
+<h2 class="h2">修改密码</h2>
+<div class="container">
+    <p>欢迎, <%= session.getAttribute("username") %></p>
 
-    </form>
+<!-- 密码输入框 -->
+<form action="<%= request.getContextPath() %>/user" method="post">
+    <label for="currentPassword">当前密码:</label>
+    <input type="password" id="currentPassword" name="currentPassword" required><br><br>
 
-    <a href="register">返回注册</a>
+    <label for="newPassword">新密码:</label>
+    <input type="password" id="newPassword" name="newPassword" required><br><br>
+
+    <label for="confirmPassword">确认新密码:</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+    <button type="submit">确认修改</button>
+</form>
     <c:if test="${not empty errorMessage}">
         <div id="errorMessage" class="error-message">
             <c:out value="${errorMessage}" />
         </div>
     </c:if>
-
     <script>
         // 如果有错误信息，2秒后自动隐藏
         window.onload = function() {
@@ -98,5 +78,6 @@
         };
     </script>
 </div>
+
 </body>
 </html>

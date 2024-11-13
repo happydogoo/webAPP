@@ -35,7 +35,7 @@
 
         .menu-item {
 
-            width: 15%;
+            width: 400px;
             font-size: 0.9vw;
             color: #fff;
             margin: 2%;
@@ -50,6 +50,12 @@
             /* 添加一些内边距 */
             box-sizing: border-box;
             /* 内边距包含在宽度和高度内 */
+        }
+        .modify{
+            font-size: 0.9vw;
+            background: green;
+            width: 100%;
+            height: 75%;
         }
 
         .Login {
@@ -76,12 +82,22 @@
         .search a:hover{
             color: #aaa;
         }
+        .avatar {
+            left: -1000px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
     </style>
 </head>
 
 <body>
 
+
 <div class="top-menu">
+    <img src="<%= request.getContextPath() %>/images/Avatar.jpg" alt="Avatar" class="avatar">
+
     <div class="menu-item"><a href="/webAPP">商品</a></div>
 <%--    <div class="menu-item"><a href="/webAPP/petfood">宠物食品</a></div>--%>
 <%--    <div class="menu-item"><a href="/webAPP/contact">联系我们</a></div>--%>
@@ -93,6 +109,11 @@
     </form>
     <div class="menu-item">
         <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
+    </div>
+    <div class="menu-item">
+        <button class="modify" onclick="window.location.href='<%= request.getContextPath() %>/user';">修改信息</button>
+<%--        <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>--%>
+
     </div>
 </div>
 </body>
