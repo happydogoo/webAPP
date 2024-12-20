@@ -15,8 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+import com.alibaba.fastjson.JSON;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
@@ -76,9 +79,56 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String type =request.getParameter("type");
+        if(type.equals("updateQuantity")){
+            HttpSession session=request.getSession();
+            String username=(String)session.getAttribute("username");
 
-        // 可以处理表单提交的逻辑，然后再转发到 JSP
-        doGet(request, response);
+            System.out.println(username+" updateQuantity now");
+            String itemId=request.getParameter("itemId");
+            int quantity=Integer.parseInt(request.getParameter("quantity"));
+            System.out.println(itemId+quantity+"udat");
+            if(cartService.updateQuantity(itemId,username,quantity)){
+
+                response.setCharacterEncoding("UTF-8");
+                response.setContentType("application/json");
+
+                Map<String, Object> responseData = new HashMap<>();
+                responseData.put("status", "success");
+                responseData.put("message", "商品数量更新成功");
+                responseData.put("currentQuantity", quantity);
+                String jsonString=JSON.toJSONString(responseData);
+
+
+                response.getWriter().write(jsonString);
+                System.out.println(username+" updateQuantity success");
+
+                //返回给浏览器
+
+            }else System.out.println("update false");
+        } else if (type.equals("removeFromCart")) {
+            HttpSession session=request.getSession();
+            String username=(String)session.getAttribute("username");
+            System.out.println( "search from user"+username);
+            if(username==null){
+                System.out.println("sendRediret login from removeFromCart");
+                response.sendRedirect("/webAPP/login");
+                return;
+            }
+            String itemId=request.getParameter("itemId");
+            System.out.println("清除Cart中的"+itemId);
+            cartService.removeItemFromCart(itemId, username);
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("application/json");
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("status", "success");
+            String jsonString=JSON.toJSONString(responseData);
+            response.getWriter().write(jsonString);
+
+
+
+        }
+
     }
 
 }

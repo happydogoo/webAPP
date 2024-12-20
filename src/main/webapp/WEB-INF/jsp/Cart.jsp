@@ -12,6 +12,9 @@
     BigDecimal totalPrice = BigDecimal.ZERO; // 初始化总价
 %>
 <html>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/Cart.js"></script>
+
 <head>
     <title>购物车</title>
     <style>
@@ -91,33 +94,46 @@
         <th>商品ID</th>
         <th>描述</th>
         <th>价格</th>
-        <th>数量</th> <!-- 新增的数量列 -->
+        <th>数量</th>
     </tr>
     </thead>
     <tbody>
     <%
         if (cartItems != null && !cartItems.isEmpty()) {
             for (Item item : cartItems) {
-                //暂时还没做多个数量的购物车功能
-                int quantity = 1; // 假设 Item 有 getQuantity() 方法
+                int quantity = item.getQuantity();
                 BigDecimal price = item.getListPrice(); // 假设 ListPrice 是 BigDecimal
                 BigDecimal itemTotal = price.multiply(BigDecimal.valueOf(quantity)); // 计算每个商品的总价
                 totalPrice = totalPrice.add(itemTotal); // 累加总价
                 String itemId=item.getItemId();
 
     %>
+
     <tr>
         <td><%= item.getItemId() %></td>
         <td><%= item.getAttribute1() %></td>
         <td><%= price %></td>
-        <td><%= quantity %></td> <!-- 显示数量 -->
-        <td>
-            <form  method="post">
-                <input type="hidden" name="type" value="removeFromCart">
+        <td >
+            <form  style="display:inline;">
+                <input type="hidden" name="type" value="decreaseQuantity">
+                <input type="hidden" id="itemId" name="itemId" data-id=<%=itemId%> value="<%= item.getItemId() %>">
+                <input type="submit" value="-" onclick="decreaseQuantity(this)" style="width:30px; height:30px;"/>
+            </form>
+            <span class="quantity"> <%= quantity %></span>
+            <form  style="display:inline;">
+                <input type="hidden" name="type" value="increaseQuantity">
                 <input type="hidden" name="itemId" value="<%= item.getItemId() %>">
-                <input type="submit" value="clear">
+                <input type="submit" value="+" onclick="increaseQuantity(this)" style="width:30px; height:30px;"/>
             </form>
         </td>
+        <td>
+            <form>
+                <input type="hidden" name="type" value="removeFromCart">
+                <input type="hidden" name="itemId" data-id=<%=itemId%> value="<%= item.getItemId() %>">
+                <input type="submit" value="清除" onclick="deleteItem(this)">
+            </form>
+        </td>
+
     </tr>
     <%
         }
@@ -143,9 +159,20 @@
     <label for="shipZip">邮政编码:</label>
     <input type="text" id="shipZip" name="shipZip" required><br><br>
 
-    <label for="shipCountry">国家:</label>
-    <input type="text" id="shipCountry" name="shipCountry" required><br><br>
-
+    <label for="shipCountrySelect">国家:</label>
+    <select id="shipCountrySelect" name="shipCountry" required>
+        <option value="">请选择国家</option>
+        <option value="US">美国</option>
+        <option value="CA">加拿大</option>
+        <option value="GB">英国</option>
+        <option value="DE">德国</option>
+        <option value="FR">法国</option>
+        <option value="IT">意大利</option>
+        <option value="ES">西班牙</option>
+        <option value="CN">中国</option>
+        <option value="IN">印度</option>
+        <option value="JP">日本</option>
+    </select><br><br>
     <label for="courier">快递公司:</label>
     <input type="text" id="courier" name="courier" required><br><br>
 
@@ -162,14 +189,13 @@
     <label for="cardType">信用卡类型:</label>
     <input type="text" id="cardType" name="cardType" required><br><br>
 
-
     <%
         if (cartItems != null && !cartItems.isEmpty()) {
             for (Item item : cartItems) {
                 BigDecimal price = item.getListPrice(); // 获取每个商品的单价
     %>
     <input type="hidden" name="itemId" value="<%= item.getItemId() %>">
-    <input type="hidden" name="itemQuantity" value="1"> <!-- 假设数量为1 -->
+    <input type="hidden" name="itemQuantity" value="<%= item.getQuantity() %>"> <!-- 假设数量为1 -->
     <input type="hidden" name="itemPrice" value="<%= price %>"> <!-- 每个商品的单价 -->
     <%
             }

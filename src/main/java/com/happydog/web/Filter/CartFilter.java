@@ -29,12 +29,12 @@ public class CartFilter implements Filter {
 
 
         String itemId = httpRequest.getParameter("itemId");
+        HttpSession session = httpRequest.getSession();
+        String username = (String) session.getAttribute("username");
 
-        if (itemId != null) {
+        if ((itemId != null)&&(username!=null)) {
             // 获取当前用户的用户名（假设通过 session 存储用户名）
-            HttpSession session = httpRequest.getSession();
-            String username = (String) session.getAttribute("username");
-            String userId=(String) session.getAttribute("userId") ;
+             String userId=(String) session.getAttribute("userId") ;
             // 获取客户端的 IP 地址
             String clientIp = httpRequest.getRemoteAddr();
             String targetId= itemId;

@@ -4,6 +4,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <title>登录界面</title>

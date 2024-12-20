@@ -3,6 +3,8 @@
 <%@ page import="com.happydog.model.Item" %>
 
 <html>
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+
 <head>
     <title>Product Details</title>
 </head>

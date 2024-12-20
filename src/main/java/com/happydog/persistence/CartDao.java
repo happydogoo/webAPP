@@ -17,20 +17,44 @@ public class CartDao {
     private ItemDao itemDao=new ItemDao();
 
     // 添加商品到购物车
-    public boolean addItemToCart(String itemId, String username, BigDecimal price) {
-        String sql = "INSERT INTO cart (itemid, username, status,price) VALUES (?, ?, 1, ?)";
+    public boolean addItemToCart(String itemId, String username, BigDecimal price,int quantity) {
+        String sql = "INSERT INTO cart (itemid, username, status,price,quantity) VALUES (?, ?, 1, ?,?)";
         try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, itemId);
             stmt.setString(2, username);
             stmt.setBigDecimal(3,price);
+            stmt.setInt(4,quantity);
+
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
+    }
+    public boolean updateItemQuantity(String itemId,String username,int newQuantity){
+        String sql = "UPDATE cart SET quantity = ? WHERE itemid = ? AND username = ? AND status = 1";
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            // 设置参数
+            stmt.setInt(1, newQuantity);
+            stmt.setString(2, itemId);
+            stmt.setString(3, username);
+
+            // 执行更新操作
+            int rowsAffected = stmt.executeUpdate();
+
+            System.out.println("sql updating");
+            // 如果更新成功，返回 true
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("sql update false");
         return false;
     }
 
@@ -69,7 +93,7 @@ public class CartDao {
     }
     public List<Item> getCartItems(String username){
         List<Item> itemList=new ArrayList<>();
-        String sql = "SELECT itemid, status, price FROM cart WHERE username = ?";
+        String sql = "SELECT itemid, status, price,quantity FROM cart WHERE username = ?";
 
         try (Connection connection = DBConnectionManager.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -82,6 +106,7 @@ public class CartDao {
                 String itemId = resultSet.getString("itemid");
                 int status = resultSet.getInt("status"); // 假设 status 是 int 类型
                 BigDecimal price = resultSet.getBigDecimal("price"); // 假设 price 是 BigDecimal 类型
+                int quantity=resultSet.getInt("quantity");
                 if(status==1){
                 // 创建 Item 对象并添加到列表中
                     Item item =itemDao.getItem(itemId);
@@ -93,6 +118,7 @@ public class CartDao {
                     item.setCartStatus(true);
                 }
                 item.setListPrice(price);
+                item.setQuantity(quantity);
                 itemList.add(item);
                 }
             }

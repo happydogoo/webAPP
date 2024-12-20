@@ -5,6 +5,8 @@
     List<Order> orders = (List<Order>) request.getAttribute("orders"); // 获取订单列表
 %>
 <html>
+<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+
 <head>
     <title>订单列表</title>
     <style>

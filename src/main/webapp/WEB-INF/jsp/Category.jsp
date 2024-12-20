@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>产品展示</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/Category.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -100,7 +103,20 @@
         .image-section img.active {
             opacity: 1;
         }
-
+        .floating-window {
+            position: absolute;
+            top: 50%;
+            left: 200px;
+            width: 150px;
+            height: auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 10;
+            }
         .text-section {
             width: 100%;
             height: 40%;
@@ -137,8 +153,12 @@
             <c:when test="${status.index % 2 == 0}">
                 <!-- 左侧显示的商品信息框 -->
                 <div class="leftbox">
-                    <div class="image-section">
+                    <div class="image-section" onmouseenter="mouseOver(this)" onmouseout="mouseOut(this)">
                         <img src="${product.imageUrl}" >
+                        <div id="${product.name}-float-window" class="floating-window" data-product-id="${product.productId}">
+                            <h4>${product.name}</h4>
+                            <p>${product.description}</p>
+                        </div>
                     </div>
                     <div class="text-section">
                         <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
@@ -154,9 +174,13 @@
         <c:choose>
             <c:when test="${status.index % 2 == 1}">
                 <div class="rightbox">
-                    <div class="image-section">
-                        <img src="${product.imageUrl}" >
+                      <div class="image-section" onmouseenter="mouseOver(this)" onmouseout="mouseOut(this)">
+                    <img src="${product.imageUrl}" >
+                    <div id="${product.name}-float-window" class="floating-window" data-product-id="${product.productId}">
+                        <h4>${product.name}</h4>
+                        <p>${product.description}</p>
                     </div>
+                </div>
                     <div class="text-section">
                         <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
                     </div>

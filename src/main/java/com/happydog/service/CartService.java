@@ -6,6 +6,8 @@ import com.happydog.persistence.CategoryDao;
 import com.happydog.persistence.ItemDao;
 import com.happydog.persistence.ProductDao;
 
+import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class CartService {
@@ -20,10 +22,10 @@ public class CartService {
         this.cartDao=new CartDao();
     }
 
-    public boolean addItemToCart(String itemId, String username) {
+    public boolean addItemToCart(String itemId, String username, int quantity) {
 
         Item item=itemDao.getItem(itemId);
-        return cartDao.addItemToCart(itemId, username,item.getListPrice());
+        return cartDao.addItemToCart(itemId, username,item.getListPrice(),quantity);
     }
     // 将购物车中的商品标记为已售出
     public boolean sellItem(String itemId, String username) {
@@ -42,7 +44,10 @@ public class CartService {
         System.out.println("delete database cart"+username+itemId);
         return cartDao.removeItemFromCart(itemId, username);
     }
+    public boolean  updateQuantity(String itemId,String username,int quantity){
 
+        return cartDao.updateItemQuantity(itemId,username,quantity) ;
+    }
 
 
 }
