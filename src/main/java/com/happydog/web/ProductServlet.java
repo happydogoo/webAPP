@@ -5,6 +5,7 @@ import com.happydog.model.Item; // 假设有一个 Item 类
 import com.happydog.model.Product;
 import com.happydog.service.CartService;
 import com.happydog.service.ProductService;
+import com.alibaba.fastjson.JSON;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +32,7 @@ public class ProductServlet extends HttpServlet {
             String itemId = request.getParameter("itemId");
             HttpSession session = request.getSession();
             String username=(String)session.getAttribute("username");
+            int quantity= 1;
 
             if(username==null){
                 System.out.println("sendRediret login from product");
@@ -43,13 +45,20 @@ public class ProductServlet extends HttpServlet {
                 cart = new Cart();
                 session.setAttribute("cart", cart);
             }
-
-            cartService.addItemToCart(itemId,username);
+            cartService.addItemToCart(itemId,username,quantity);
             request.getRequestDispatcher("/WEB-INF/jsp/Product.jsp").forward(request, response);
 
 
-        }
-        else{
+        } else if ("getItems".equals(type)) {
+            System.out.println("try to floating-window getItems");
+            String productId=request.getParameter("product");
+            List<Item> itemList= productService.getItemById(productId);
+            String jsonString = JSON.toJSONString(itemList);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(jsonString);
+            System.out.println(jsonString);
+        } else{
         String productId = request.getParameter("product");
 
         if (productId == null || productId.isEmpty()) {
