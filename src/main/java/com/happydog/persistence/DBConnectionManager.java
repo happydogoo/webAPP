@@ -13,9 +13,9 @@ public class DBConnectionManager {
     }
 
     public static Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/web_application";
+        String url = "jdbc:mysql://localhost:3306/mysql";
         String username = "root";
-        String password = "123456";
+        String password = "wcy200508040058";
         return DriverManager.getConnection(url, username, password);
     }
     public static void close(Connection connection) {

@@ -61,6 +61,12 @@
             width: 100%;
             height: 75%;
         }
+        .modify{
+            font-size: 0.9vw;
+            background: green;
+            width: 100%;
+            height: 75%;
+        }
         .menu-item a {
             color: #fff; /* 设置字体颜色 */
             text-decoration: none; /* 去除下划线 */
@@ -76,6 +82,8 @@
         .search a:hover{
             color: #aaa;
         }
+
+
     </style>
 </head>
 
@@ -94,6 +102,11 @@
     <div class="menu-item">
         <button class="Login" onclick="window.location.href='<%= request.getContextPath() %>/login';">登录</button>
     </div>
+    <div class="menu-item">
+        <button class="modify" onclick="window.location.href='<%= request.getContextPath() %>';">修改信息</button>
+    </div>
+
+
 </div>
 </body>
 </html>

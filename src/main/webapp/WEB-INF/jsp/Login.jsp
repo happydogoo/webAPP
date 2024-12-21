@@ -55,6 +55,8 @@
             background-color: #45a049;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <div class="login-container">
@@ -63,6 +65,8 @@
     <form action="login" method="post">
         <label for="username">用户名:</label>
         <input type="text" id="username" name="username" required>
+        <span id="usernameError" style="color: red;"></span>
+        <br>
 
         <label for="password">密码:</label>
         <input type="password" id="password" name="password" required>
@@ -86,18 +90,44 @@
 
     <script>
         // 如果有错误信息，2秒后自动隐藏
-        window.onload = function() {
+        window.onload = function () {
             var errorMessage = document.getElementById("errorMessage");
             if (errorMessage) {
                 // 显示错误信息
                 errorMessage.style.display = "block";
 
                 // 2秒后自动隐藏
-                setTimeout(function() {
+                setTimeout(function () {
                     errorMessage.style.display = "none";
                 }, 2000); // 2000ms = 2秒
             }
         };
+
+            $(document).ready(function() {
+            $("#username").on("blur", function () { // 监听用户名输入框失焦事件
+                var username = $(this).val();
+                console.log("blur");        //网页控制台输出确认是否绑定成功
+                if (username.trim() !== "") {
+                    $.ajax({
+                        url: "checkUsername", // 后端接口路径
+                        method: "GET",
+                        data: {username: username},
+                        success: function (response) {
+                            if (response.exists) {
+                                $("#usernameError").text("用户名已存在，请选择其他用户名！");
+                            } else {
+                                $("#usernameError").text("用户名合法");
+                            }
+                        },
+                        error: function () {
+                            $("#usernameError").text("服务器错误，请稍后重试！");
+                        }
+                    });
+                }
+            });
+        });
+
+
     </script>
 </div>
 </body>

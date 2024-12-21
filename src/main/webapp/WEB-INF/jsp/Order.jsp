@@ -25,6 +25,31 @@
         th {
             background-color: #f2f2f2;
         }
+        h1 {
+            color: #fff; /* 将“购物车”标题字体颜色设置为白色 */
+            margin-left: 48%;
+        }
+        table{
+            background-color: #fff; /* 白色背景 */
+            color: #000; /* 黑色文字 */
+        }
+
+        input, button {
+            background-color: #fff; /* 白色背景 */
+            color: #000; /* 黑色文字 */
+            border: 1px solid #ddd; /* 边框颜色 */
+        }
+
+        button, .checkout-btn {
+            background-color: #4CAF50; /* 绿色背景 */
+            color: white; /* 白色文字 */
+            border: none; /* 无边框 */
+            cursor: pointer; /* 鼠标悬停时显示指针 */
+        }
+
+        button:hover, .checkout-btn:hover {
+            background-color: #45a049; /* 鼠标悬停时的背景颜色 */
+        }
     </style>
 </head>
 <body>

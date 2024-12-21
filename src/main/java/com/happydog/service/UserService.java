@@ -1,12 +1,17 @@
 package com.happydog.service;
 
+
+
+import com.happydog.persistence.UserDao;
+
 public class UserService {
+    private UserDao userDao;
 
-//    public boolean login(String username, String password) {
-//      }
-//
-//    public boolean register(String username, String password) {
-//     }
+    public UserService() {
+        userDao = new UserDao();
+    }
 
-
+    public boolean isUsernameExists(String username) {
+        return userDao.checkUsername(username);
+    }
 }

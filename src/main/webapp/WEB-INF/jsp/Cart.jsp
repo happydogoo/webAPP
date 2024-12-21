@@ -14,30 +14,75 @@
 <html>
 <head>
     <title>购物车</title>
-    <style>
-        body{
-            background: #f0f0f0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .checkout-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+    <style>body {
+        background: #f0f0f0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .checkout-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .box {                    /*box这一块改的是购物车下面的信息*/
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* 使内容靠左对齐 */
+        margin-left: 5%; /* 距离左边15%，你要是不满意可以自己改一下位置 */
+        color: #fff; /* 字体颜色设置为白色 */
+        padding: 20px; /* 根据需要添加内边距 */
+        border-radius: 5px; /* 可选：添加圆角 */
+    }
+
+    h1 {
+        color: #fff; /* 将“购物车”标题字体颜色设置为白色 */
+        margin-left: 48%;
+    }
+
+
+
+    /* 新增的样式 */
+    table{
+        background-color: #fff; /* 白色背景 */
+        color: #000; /* 黑色文字 */
+    }
+
+    input, button {
+        background-color: #fff; /* 白色背景 */
+        color: #000; /* 黑色文字 */
+        border: 1px solid #ddd; /* 边框颜色 */
+    }
+
+    button, .checkout-btn {
+        background-color: #4CAF50; /* 绿色背景 */
+        color: white; /* 白色文字 */
+        border: none; /* 无边框 */
+        cursor: pointer; /* 鼠标悬停时显示指针 */
+    }
+
+    button:hover, .checkout-btn:hover {
+        background-color: #45a049; /* 鼠标悬停时的背景颜色 */
+    }
+    </style>
+</head>
     </style>
 </head>
 <body>
@@ -93,6 +138,8 @@
     </tbody>
 </table>
 
+
+<div class="box">
 <!-- 显示总价 -->
 <h2>总价: <%= totalPrice %></h2>
 
@@ -140,7 +187,7 @@
 
     <input type="submit" value="提交订单">
 </form>
-
+</div>
 
 
 </body>
