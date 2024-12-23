@@ -1,10 +1,7 @@
 package com.happydog.web;
 
 
-import com.happydog.model.Cart;
-import com.happydog.model.Category;
-import com.happydog.model.Item;
-import com.happydog.model.Product;
+import com.happydog.model.*;
 import com.happydog.service.CartService;
 import com.happydog.service.CategoryService;
 
@@ -15,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +42,9 @@ public class CartServlet extends HttpServlet {
             }
             System.out.println("try to fin uername"+username);
             List<Item>itemList=cartService.getUserCartItems(username);
-
+            List<CheckoutInfo>checkoutInfoList=cartService.getCheckoutInfoByUsername(username);
             request.setAttribute("itemList", itemList);
+            request.setAttribute("checkoutInfoList",checkoutInfoList);
             request.getRequestDispatcher("/WEB-INF/jsp/Cart.jsp").forward(request, response);
 
 
@@ -125,9 +124,46 @@ public class CartServlet extends HttpServlet {
             String jsonString=JSON.toJSONString(responseData);
             response.getWriter().write(jsonString);
 
+        }
+
+        else if(type.equals("saveCheckoutInfo")){
+            // 获取请求参数
+            HttpSession session=request.getSession();
+            String username=(String)session.getAttribute("username");
+            Date orderDate = new Date(System.currentTimeMillis());
+
+            String shipAddr1 = request.getParameter("shipAddr1");
+            String shipZip = request.getParameter("shipZip");
+            String shipCountry = request.getParameter("shipCountry");
+            String courier = request.getParameter("courier");
+            String name = request.getParameter("name");
+            String creditCard = request.getParameter("creditCard");
+            String cardType = request.getParameter("cardType");
+
+            // 验证参数是否为空
+            if(shipAddr1 == null || shipZip == null || shipCountry == null || courier == null
+                    || name == null || creditCard == null || cardType == null) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.getWriter().write("Missing required parameters");
+                return;
+            }
+            CheckoutInfo checkoutInfo=new CheckoutInfo(username,orderDate,shipAddr1,shipZip,shipCountry,courier,name,creditCard,cardType);
+            if(cartService.saveCheckoutInfo(checkoutInfo)){
+                //给浏览器返回
+
+                response.setCharacterEncoding("UTF-8");
+                response.setContentType("application/json");
+                Map<String, Object> responseData = new HashMap<>();
+                responseData.put("status", "success");
+                String jsonString=JSON.toJSONString(responseData);
+                response.getWriter().write(jsonString);
+
+
+            }
 
 
         }
+
 
     }
 

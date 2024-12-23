@@ -58,7 +58,7 @@
     </ul>
 
 
-    <form action="/webAPP/cart" method="post">
+    <form action="cart" method="get">
         <input type="hidden" name="type" value="getCartPage">
 
         <input type="submit" value="购物车"/>

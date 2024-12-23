@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.happydog.model.Cart;
+import com.happydog.model.CheckoutInfo;
 import com.happydog.model.Item;
 import com.happydog.persistence.DBConnectionManager;
 
@@ -128,6 +129,70 @@ public class CartDao {
         System.out.println(itemList.toString()+"123123123213");
         return itemList;
     }
+
+
+        public boolean saveCheckoutInfo(CheckoutInfo order) {
+            String sql = "INSERT INTO CheckoutInfo (username, order_date, ship_addr1, ship_zip, ship_country, courier, ship_to_name, credit_card, card_type) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            try (Connection conn = DBConnectionManager.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setString(1, order.getUsername());
+                stmt.setDate(2, order.getOrderDate());
+                stmt.setString(3, order.getShipAddr1());
+                stmt.setString(4, order.getShipZip());
+                stmt.setString(5, order.getShipCountry());
+                stmt.setString(6, order.getCourier());
+                stmt.setString(7, order.getShipToName());
+                stmt.setString(8, order.getCreditCard());
+                stmt.setString(9, order.getCardType());
+
+
+                int rowsAffected = stmt.executeUpdate();
+                System.out.println("Checkout info saved successfully!");
+
+                return rowsAffected > 0;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return false;
+    }
+
+
+
+    public List<CheckoutInfo> getCheckoutInfoByUsername(String username) {
+        String sql = "SELECT username, order_date, ship_addr1, ship_zip, ship_country, courier, ship_to_name, credit_card, card_type "
+                + "FROM CheckoutInfo WHERE username = ?";
+        CheckoutInfo checkoutInfo = null;
+        List<CheckoutInfo> checkoutInfoList=new ArrayList<>();
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, username);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    checkoutInfo = new CheckoutInfo();
+                    checkoutInfo.setUsername(rs.getString("username"));
+                    checkoutInfo.setOrderDate(rs.getDate("order_date"));
+                    checkoutInfo.setShipAddr1(rs.getString("ship_addr1"));
+                    checkoutInfo.setShipZip(rs.getString("ship_zip"));
+                    checkoutInfo.setShipCountry(rs.getString("ship_country"));
+                    checkoutInfo.setCourier(rs.getString("courier"));
+                     checkoutInfo.setShipToName(rs.getString("ship_to_name"));
+                    checkoutInfo.setCreditCard(rs.getString("credit_card"));
+                    checkoutInfo.setCardType(rs.getString("card_type"));
+                    checkoutInfoList.add(checkoutInfo);
+                    }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(checkoutInfoList.toString());
+        return checkoutInfoList;
+    }
+
 
 }
 
