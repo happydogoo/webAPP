@@ -78,7 +78,8 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String type =request.getParameter("type");
+        String type =request.getParameter("type");request.setCharacterEncoding("UTF-8");
+
         if(type.equals("updateQuantity")){
             HttpSession session=request.getSession();
             String username=(String)session.getAttribute("username");
@@ -139,7 +140,14 @@ public class CartServlet extends HttpServlet {
             String name = request.getParameter("name");
             String creditCard = request.getParameter("creditCard");
             String cardType = request.getParameter("cardType");
-
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
+            System.out.println("cartservlet"+shipAddr1);
             // 验证参数是否为空
             if(shipAddr1 == null || shipZip == null || shipCountry == null || courier == null
                     || name == null || creditCard == null || cardType == null) {

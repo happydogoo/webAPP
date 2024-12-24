@@ -28,8 +28,10 @@ public class CheckoutServlet extends HttpServlet {
         System.out.println("enter checkout");
         HttpSession session = request.getSession();
         CheckoutDao checkoutDao=new CheckoutDao();
-        CartService cartService=new CartService();
+        response.setContentType("text/html;charset=UTF-8");
 
+        CartService cartService=new CartService();
+        request.setCharacterEncoding("UTF-8");
         String username = (String) session.getAttribute("username");
 
         if(username==null){
@@ -42,7 +44,7 @@ public class CheckoutServlet extends HttpServlet {
         String shipZip = request.getParameter("shipZip");
         String shipCountry = request.getParameter("shipCountry");
         String courier = request.getParameter("courier");
-        String name = request.getParameter("name"); // 修改为只获取名字
+        String name = request.getParameter("name");
         String creditCard = request.getParameter("creditCard");
         String cardType = request.getParameter("cardType");
 
@@ -70,7 +72,7 @@ public class CheckoutServlet extends HttpServlet {
 
             order.setQuantity(quantity); // 如果 Order 类中有设置数量的方法
         order.setTotalPrice(price.multiply(BigDecimal.valueOf(quantity)));
-            System.out.println("!!!!!checkoutServlet insertOrder");
+
             checkoutDao.insertOrder(order);
             try {
                 cartService.sellItem(itemIds[i],username);

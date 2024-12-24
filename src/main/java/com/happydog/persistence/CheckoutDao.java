@@ -24,6 +24,7 @@ public class CheckoutDao {
             stmt.setString(3, order.getShipAddr1());
             stmt.setString(4, order.getShipZip());
             stmt.setString(5, order.getShipCountry());
+            
             stmt.setString(6, order.getCourier());
             stmt.setBigDecimal(7, order.getTotalPrice());
             stmt.setString(8, order.getShipToName());

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <title>产品展示</title>
@@ -67,7 +68,7 @@
             margin-top: 1.5%; /* 添加顶部间距 */
             height: 130%;
             top: 15%;
-            left: 25%;
+            left: 31%;
             width: 40%;
         }
 
@@ -162,6 +163,7 @@
                     </div>
                     <div class="text-section">
                         <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
+                        <p>${product.description}</p>
                     </div>
                 </div>
             </c:when>
@@ -183,6 +185,7 @@
                 </div>
                     <div class="text-section">
                         <a href="/webAPP/product?product=${product.productId}"><h3>${product.name}</h3></a>
+                        <p>${product.description}</p>
                     </div>
                 </div>
             </c:when>

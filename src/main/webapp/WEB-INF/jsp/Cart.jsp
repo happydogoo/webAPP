@@ -4,6 +4,10 @@
 <%@ page import="com.happydog.model.Item" %>
 <%@ page import="com.happydog.service.CartService" %>
 <%@ page import="com.happydog.model.CheckoutInfo" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<meta charset="UTF-8">
+
+
 <%
     // 假设 CartService 用于获取购物车项目
     CartService cartService = new CartService();
@@ -220,7 +224,7 @@
                 <h3>邮编: <%= checkoutInfo.getShipZip() %></h3>
                 <h3 style="border-top: 2px solid #ddd;"></h3>
                 <h3>快递公司: <%= checkoutInfo.getCourier() %></h3>
-                <h3><%= checkoutInfo.getCardType() %>银行: <%= checkoutInfo.getCreditCard() %></h3>
+                <h3><%= checkoutInfo.getCardType() %>: <%= checkoutInfo.getCreditCard() %></h3>
             </a>
         </li>
         <%
@@ -256,15 +260,15 @@
 
 
     </ul>
-<form action="checkout" method="POST">
+<form action="checkout" method="POST" accept-charset="UTF-8">
     <%
         if (cartItems != null && !cartItems.isEmpty()) {
             for (Item item : cartItems) {
                 BigDecimal price = item.getListPrice(); // 获取每个商品的单价
     %>
     <input type="hidden" name="itemId" value="<%= item.getItemId() %>">
-    <input type="hidden" name="itemQuantity" value="<%= item.getQuantity() %>"> <!-- 假设数量为1 -->
-    <input type="hidden" name="itemPrice" value="<%= price %>"> <!-- 每个商品的单价 -->
+    <input type="hidden" name="itemQuantity" value="<%= item.getQuantity() %>">
+    <input type="hidden" name="itemPrice" value="<%= price %>">
     <%
             }
         }
@@ -294,7 +298,7 @@
         </select><br><br>
         <label for="courier">快递公司:</label>
         <input type="text" id="courier" name="courier" required><br><br>
-        <input type="hidden" id="totalPrice" name="totalPrice"  value=<%= totalPrice %>>
+        <input type="hidden" id= "totalPrice" name="totalPrice"  value=<%= totalPrice %>>
         <label for="name">收件人姓名:</label>
         <input type="text" id="name" name="name" required><br><br>
         <label for="creditCard">信用卡号:</label>
@@ -309,7 +313,7 @@
     <%--这个用于背景--%>
     <div id="overlay" style=" display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
 
-    <input type="submit" value="提交订单" style="
+    <input onclick="isCartEmpty(this)" type="submit" value="提交订单" style="
     padding: 15px 30px;
     font-size: 18px;
     border-radius: 12px;

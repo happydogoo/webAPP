@@ -136,7 +136,7 @@ function closePopup(element){
     };
     let fullShipCountry=countryMapping[shipCountry];
     $.ajax({
-        url: '/webAPP/cart', // 替换为你的实际路径
+        url: '/webAPP/cart',
         method: 'POST',
         data: {
             type: 'saveCheckoutInfo',
@@ -188,9 +188,13 @@ function closePopup(element){
         }
     });
 }
-function chooseCheckoutInfo(anchor){
+function chooseCheckoutInfo(anchor) {
     event.preventDefault();
-    anchor.style.boxShadow="0 0 20px gold";
+    const allLiElements = document.querySelectorAll('li a');
+    allLiElements.forEach(liAnchor => {
+        liAnchor.style.boxShadow = ''; // Reset the boxShadow
+    });
+    anchor.style.boxShadow = "0 0 20px gold";
     //box-shadow 0 0 20px gold
     const shipAddr1Input = document.getElementById("shipAddr1");
     const shipZipInput = document.getElementById("shipZip");
@@ -200,10 +204,24 @@ function chooseCheckoutInfo(anchor){
     const creditCardInput = document.getElementById("creditCard");
     const cardTypeInput = document.getElementById("cardType");
 
+    // 国家中英文对照表
+    const countryMap = {
+        "美国": "US",
+        "加拿大": "CA",
+        "英国": "GB",
+        "德国": "DE",
+        "法国": "FR",
+        "意大利": "IT",
+        "西班牙": "ES",
+        "中国": "CN",
+        "印度": "IN",
+        "日本": "JP"
+    };
+
     // 从 <a> 标签中获取 data-* 属性值
     const shipAddr1 = anchor.getAttribute("data-ship-addr1");
     const shipZip = anchor.getAttribute("data-ship-zip");
-    const shipCountry = anchor.getAttribute("data-ship-country");
+    const shipCountry = anchor.getAttribute("data-ship-country"); // 获取中文国家名
     const courier = anchor.getAttribute("data-courier");
     const name = anchor.getAttribute("data-name");
     const creditCard = anchor.getAttribute("data-credit-card");
@@ -212,11 +230,20 @@ function chooseCheckoutInfo(anchor){
     // 设置表单值
     shipAddr1Input.value = shipAddr1;
     shipZipInput.value = shipZip;
-    shipCountrySelect.value = shipCountry;
+    shipCountrySelect.value = countryMap[shipCountry] || ""; // 根据中文全称获取英文缩写
     courierInput.value = courier;
     nameInput.value = name;
     creditCardInput.value = creditCard;
     cardTypeInput.value = cardType;
+}
+function isCartEmpty(element){
+
+        const itemInput = document.querySelector('input[type="hidden"][name="itemId"]');
+
+        if (!itemInput) {
+            event.preventDefault(); // 阻止默认行为
+            event.stopPropagation(); // 阻止冒泡
+            return false; // 防止后续代码执行
+        }
 
 }
-

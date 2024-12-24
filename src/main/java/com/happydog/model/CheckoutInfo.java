@@ -2,6 +2,8 @@ package com.happydog.model;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CheckoutInfo {
 
@@ -16,7 +18,20 @@ public class CheckoutInfo {
     private String creditCard;     // 信用卡号
     private String cardType;       // 卡类型
 
+    private static final Map<String, String> countryMap = new HashMap<>();
 
+    static {
+        countryMap.put("US", "美国");
+        countryMap.put("CA", "加拿大");
+        countryMap.put("GB", "英国");
+        countryMap.put("DE", "德国");
+        countryMap.put("FR", "法国");
+        countryMap.put("IT", "意大利");
+        countryMap.put("ES", "西班牙");
+        countryMap.put("CN", "中国");
+        countryMap.put("IN", "印度");
+        countryMap.put("JP", "日本");
+    }
     // 默认构造函数
     public CheckoutInfo() {}
 
@@ -54,6 +69,9 @@ public class CheckoutInfo {
     }
 
     public String getShipAddr1() {
+
+
+
         return shipAddr1;
     }
 
@@ -70,7 +88,8 @@ public class CheckoutInfo {
     }
 
     public String getShipCountry() {
-        return shipCountry;
+        return countryMap.getOrDefault(shipCountry, shipCountry); // 默认返回简称
+
     }
 
     public void setShipCountry(String shipCountry) {

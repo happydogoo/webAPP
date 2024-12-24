@@ -10,16 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e781b137-525c-43eb-bf74-724707be1b67" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/CheckoutInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/NewCheckout.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/logocsu.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/model/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CartDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CartDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/model/CheckoutInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/model/CheckoutInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CheckoutDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/persistence/CheckoutDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/CartServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/happydog/web/CheckoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/happydog/web/CheckoutServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Category.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Category.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Item.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/Item.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/MainHeader.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/MainHeader.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/js/Cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/Cart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +78,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2918848&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -98,6 +98,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 8.5.35" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.35" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="COMMON_VM_ARGUMENTS" value="-Dfile.encoding=UTF-8 " />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="webAPP:war exploded">
@@ -184,6 +185,10 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Node.js.Cart.js" />
+      <item itemvalue="Tomcat Server.Tomcat 8.5.35" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Node.js.Cart.js" />
@@ -257,7 +262,12 @@
       <workItem from="1734828399925" duration="7706000" />
       <workItem from="1734864245220" duration="600000" />
       <workItem from="1734940368624" duration="6770000" />
-      <workItem from="1734951721429" duration="1260000" />
+      <workItem from="1734951721429" duration="2498000" />
+      <workItem from="1734962821436" duration="7999000" />
+      <workItem from="1735019934228" duration="1982000" />
+      <workItem from="1735032654680" duration="221000" />
+      <workItem from="1735038825837" duration="2978000" />
+      <workItem from="1735042117978" duration="1619000" />
     </task>
     <servers />
   </component>

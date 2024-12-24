@@ -24,19 +24,22 @@
             display: flex;
             position: relative;
             top: 0%;
-            left: 60%;
-            width: 35%;
+            /*left: 60%;*/
+            width:100%;
             height: 10%;
             align-items: center;
+            justify-content: center;
             opacity: 0.9;
             padding: 1%;
             box-sizing: border-box;
         }
 
         .menu-item {
-
-            width: 400px;
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
             font-size: 0.9vw;
+            padding: 5px 10px;
             color: #fff;
             margin: 2%;
         }
@@ -83,11 +86,9 @@
             color: #aaa;
         }
         .avatar {
-            left: -1000px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
+            left :1%;
+            height: 63px;
+            margin-right: 36%;
         }
     </style>
 </head>
@@ -96,7 +97,7 @@
 
 
 <div class="top-menu">
-    <img src="<%= request.getContextPath() %>/images/Avatar.jpg" alt="Avatar" class="avatar">
+    <img src="<%= request.getContextPath() %>/images/logocsu.png" alt="Avatar" class="avatar">
 
     <div class="menu-item"><a href="/webAPP">商品</a></div>
 <%--    <div class="menu-item"><a href="/webAPP/petfood">宠物食品</a></div>--%>
