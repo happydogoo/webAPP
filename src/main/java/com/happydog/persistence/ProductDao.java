@@ -14,7 +14,7 @@ public class ProductDao {
     private static final String GET_PRODUCT =
             "SELECT PRODUCTID AS productId, NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME = ?";
     private static final String SEARCH_PRODUCT_LIST =
-            "SELECT PRODUCTID AS productId, NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME LIKE ? OR DESCN LIKE ?";
+            "SELECT PRODUCTID AS productId, NAME, DESCN AS description, IMAGEURL AS imageUrl FROM PRODUCT WHERE NAME LIKE ? OR DESCN LIKE ? ";
 
     public List<Product> getProductListByCategory(String category) {
         List<Product> productList = new ArrayList<>();

@@ -30,6 +30,7 @@ public class UserInfoServlet extends HttpServlet {
 
         String currentPassword=request.getParameter("currentPassword");
         String newPassword=request.getParameter("newPassword");
+        String newUsername=request.getParameter("newUsername");
         String confirmPassword=request.getParameter("confirmPassword");
         HttpSession session=request.getSession();
         String username=(String) session.getAttribute("username");
@@ -41,6 +42,10 @@ public class UserInfoServlet extends HttpServlet {
 
         if(confirmPassword.equals(newPassword)){
             if(userService.changePassword(username,newPassword,currentPassword)){
+                userService.changeUsername(username,newUsername);
+
+
+
                try{ response.sendRedirect("/webAPP/login");
             }
                catch (Exception e){

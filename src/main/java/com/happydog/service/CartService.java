@@ -1,10 +1,8 @@
 package com.happydog.service;
 
+import com.happydog.model.CheckoutInfo;
 import com.happydog.model.Item;
-import com.happydog.persistence.CartDao;
-import com.happydog.persistence.CategoryDao;
-import com.happydog.persistence.ItemDao;
-import com.happydog.persistence.ProductDao;
+import com.happydog.persistence.*;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
@@ -15,6 +13,7 @@ public class CartService {
     private ProductDao productDao;
     private ItemDao itemDao;
     private CartDao cartDao;
+
     public CartService(){
         this.categoryDao=new CategoryDao();
         this.productDao=new ProductDao();
@@ -48,6 +47,11 @@ public class CartService {
 
         return cartDao.updateItemQuantity(itemId,username,quantity) ;
     }
-
+    public boolean saveCheckoutInfo(CheckoutInfo order){
+        return cartDao.saveCheckoutInfo(order);
+    }
+    public List<CheckoutInfo>getCheckoutInfoByUsername(String username){
+        return cartDao.getCheckoutInfoByUsername(username);
+    }
 
 }

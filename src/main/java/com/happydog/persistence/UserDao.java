@@ -13,7 +13,7 @@ public class UserDao {
     public boolean saveUser(User user) {
         String sql = "INSERT INTO account (email, username, addr1, phone, password,userid) VALUES (?, ?, ?, ?, ?,?)";
 
-         try (Connection conn = DBConnectionManager.getConnection();
+        try (Connection conn = DBConnectionManager.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             System.out.println("Executing userDAO query");
@@ -33,7 +33,8 @@ public class UserDao {
             return false;
         }
     }
-    public boolean checkLogin(String username,String password){
+
+    public boolean checkLogin(String username, String password) {
         String sql = "SELECT * FROM account WHERE username = ? AND password = ?";
 
         try (Connection conn = DBConnectionManager.getConnection();
@@ -76,6 +77,7 @@ public class UserDao {
             return null; // 出现异常时返回 null
         }
     }
+
     public boolean changePassword(String username, String newPassword, String currentPassword) {
         String sql = "UPDATE account SET password = ? WHERE username = ? AND password = ?";
         try (Connection conn = DBConnectionManager.getConnection();
@@ -93,7 +95,45 @@ public class UserDao {
         }
     }
 
+    public boolean checkUsername(String username) {
+        String sql = "SELECT COUNT(*) FROM account WHERE username = ?";
+        try (Connection conn = DBConnectionManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, username);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 
+    public boolean changeUsername(String username, String newUsername) {
 
+
+        String[] sqlStatements = {
+                "UPDATE orders SET username = ? WHERE username = ?",
+                "UPDATE checkoutinfo SET username = ? WHERE username = ?",
+                "UPDATE cart SET username = ? WHERE username = ?",
+                "UPDATE account SET username= ? WHERE username = ? "
+        };
+        try (Connection conn = DBConnectionManager.getConnection()) {
+            for (String sql : sqlStatements) {
+                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    stmt.setString(1, newUsername); // 设置新用户名
+                    stmt.setString(2, username);   // 设置旧用户名
+                    stmt.executeUpdate();          // 执行更新操作
+                }
+            }
+            return true; // 所有更新成功
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // 发生错误返回 false
+        }
+
+    }
 }

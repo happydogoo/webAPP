@@ -25,11 +25,13 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+        System.out.println("enter checkout");
         HttpSession session = request.getSession();
         CheckoutDao checkoutDao=new CheckoutDao();
-        CartService cartService=new CartService();
+        response.setContentType("text/html;charset=UTF-8");
 
+        CartService cartService=new CartService();
+        request.setCharacterEncoding("UTF-8");
         String username = (String) session.getAttribute("username");
 
         if(username==null){
@@ -40,9 +42,9 @@ public class CheckoutServlet extends HttpServlet {
         // 获取表单中的订单信息
         String shipAddr1 = request.getParameter("shipAddr1");
         String shipZip = request.getParameter("shipZip");
-        String shipCountry = request.getParameter("shipCountry");
+        String shipCountry = request.getParameter("trueShipCountry");
         String courier = request.getParameter("courier");
-        String name = request.getParameter("name"); // 修改为只获取名字
+        String name = request.getParameter("name");
         String creditCard = request.getParameter("creditCard");
         String cardType = request.getParameter("cardType");
 
@@ -50,9 +52,7 @@ public class CheckoutServlet extends HttpServlet {
         String[] itemQuantities = request.getParameterValues("itemQuantity");
         String[] itemPrices = request.getParameterValues("itemPrice");
 
-
         Date orderDate = new Date(System.currentTimeMillis());
-
 
         for (int i = 0; i < itemIds.length; i++) {
         Order order = new Order();
@@ -62,7 +62,6 @@ public class CheckoutServlet extends HttpServlet {
         order.setShipZip(shipZip);
         order.setShipCountry(shipCountry);
         order.setCourier(courier);
-
         order.setShipToName(name);
         order.setCreditCard(creditCard);
         order.setCardType(cardType);
@@ -72,19 +71,14 @@ public class CheckoutServlet extends HttpServlet {
             BigDecimal price = new BigDecimal(itemPrices[i]);
 
             order.setQuantity(quantity); // 如果 Order 类中有设置数量的方法
-        order.setTotalPrice(price);
-            System.out.println("checkoutServlet insertOrder");
+        order.setTotalPrice(price.multiply(BigDecimal.valueOf(quantity)));
+
             checkoutDao.insertOrder(order);
             try {
                 cartService.sellItem(itemIds[i],username);
             } catch (Exception e) {
-
                 e.printStackTrace();
             }
-
-
-
-
 
         }
         response.sendRedirect("/webAPP/order");

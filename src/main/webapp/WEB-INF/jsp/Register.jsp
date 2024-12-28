@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
-<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
-
 <head>
     <meta charset="UTF-8">
     <title>注册界面</title>
@@ -55,6 +53,8 @@
             background-color: #45a049;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 <body>
 <div class="register-container">
@@ -63,6 +63,9 @@
     <form action="${pageContext.request.contextPath}/register" method="post">
         <label for="username">用户名:</label>
         <input type="text" id="username" name="username" required>
+        <span id="usernameError" ></span>
+        <br>
+
 
         <label for="password">密码:</label>
         <input type="password" id="password" name="password" required>
@@ -96,20 +99,52 @@
         </div>
     </c:if>
     <script>
-    // 如果有错误信息，2秒后自动隐藏
-    window.onload = function() {
-        var errorMessage = document.getElementById("errorMessage");
-        if (errorMessage) {
-            // 显示错误信息
-            errorMessage.style.display = "block";
+        // 如果有错误信息，2秒后自动隐藏
+        window.onload = function() {
+            var errorMessage = document.getElementById("errorMessage");
+            if (errorMessage) {
+                // 显示错误信息
+                errorMessage.style.display = "block";
 
-            // 2秒后自动隐藏
-            setTimeout(function() {
-                errorMessage.style.display = "none";
-            }, 2000); // 2000ms = 2秒
-        }
-    };
-</script>
+                // 2秒后自动隐藏
+                setTimeout(function() {
+                    errorMessage.style.display = "none";
+                }, 2000); // 2000ms = 2秒
+            }
+        };
+
+        $(document).ready(function() {
+            $("#username").on("blur", function () { // 监听用户名输入框失焦事件
+                var username = $(this).val();
+                console.log("blur"); // 网页控制台输出确认是否绑定成功
+                if (username.trim() !== "") {
+                    console.log("blur")
+                    $.ajax({
+                        url: "checkUsername", // 后端接口路径
+                        method: "GET",
+                        data: { username: username },
+                        success: function (response) {
+                            if (response.exists) {
+                                $("#usernameError")
+                                    .text("用户名已存在，请选择其他用户名！")
+                                    .css("color", "red");
+                            } else {
+                                $("#usernameError")
+                                    .text("用户名合法")
+                                    .css("color", "green");
+                            }
+                        },
+                        error: function () {
+                            $("#usernameError")
+                                .text("服务器错误，请稍后重试！")
+                                .css("color", "red");
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
     <a href="login">返回登录</a>
 
 
