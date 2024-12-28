@@ -4,7 +4,8 @@
 
 
 <html>
-<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 <head>
     <title>Product Details</title>

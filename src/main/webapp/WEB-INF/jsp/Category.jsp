@@ -17,7 +17,7 @@
         .divide {
             display: flex;
             position: absolute;
-            top: 8%;
+            top: 11%;
             left: 0;
             width: 100%;
             height: 7%;
@@ -38,7 +38,9 @@
             border-radius: 15px;
             font-size: 1vw;
         }
-
+        .top-menu{
+            top: -2%;
+        }
         .divide-item a {
             color: white; /* 设置字体颜色为白色 */
             text-decoration: none; /* 去除下划线 */
@@ -55,7 +57,7 @@
             margin-top: 1.5%; /* 添加顶部间距 */
             position: absolute;
             height: 130%;
-            top: 15%;
+            top: 17%;
             left: 5%;
             width: 40%;
         }
@@ -67,7 +69,7 @@
             position: absolute;
             margin-top: 1.5%; /* 添加顶部间距 */
             height: 130%;
-            top: 15%;
+            top: 17%;
             left: 31%;
             width: 40%;
         }

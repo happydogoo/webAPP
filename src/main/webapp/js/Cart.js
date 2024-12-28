@@ -101,8 +101,6 @@ function deleteItem(element) {
 function addCheckoutInfo(element){
     event.preventDefault();
 
-
-
     const popup = document.getElementById('popup');
     const overlay = document.getElementById('overlay');
     popup.style.display = 'block'; // 显示弹窗
@@ -204,6 +202,8 @@ function chooseCheckoutInfo(anchor) {
     const creditCardInput = document.getElementById("creditCard");
     const cardTypeInput = document.getElementById("cardType");
 
+    const trueShipCountry=document.getElementById("trueShipCountry");
+
     // 国家中英文对照表
     const countryMap = {
         "美国": "US",
@@ -231,6 +231,7 @@ function chooseCheckoutInfo(anchor) {
     shipAddr1Input.value = shipAddr1;
     shipZipInput.value = shipZip;
     shipCountrySelect.value = countryMap[shipCountry] || ""; // 根据中文全称获取英文缩写
+    trueShipCountry.value=shipCountry || "";
     courierInput.value = courier;
     nameInput.value = name;
     creditCardInput.value = creditCard;

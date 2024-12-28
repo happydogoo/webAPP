@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>修改密码</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         .error-message {
             background-color: #f8d7da;
@@ -46,6 +47,13 @@
 
 <!-- 密码输入框 -->
 <form action="<%= request.getContextPath() %>/user" method="post">
+
+    <label for="username">用户名:</label>
+    <input type="text" id="username" name="newUsername" required>
+    <br>
+
+    <span id="usernameError" ></span>
+    <br>
     <label for="currentPassword">当前密码:</label>
     <input type="password" id="currentPassword" name="currentPassword" required><br><br>
 
@@ -76,6 +84,38 @@
                 }, 2000); // 2000ms = 2秒
             }
         };
+
+        $(document).ready(function() {
+            $("#username").on("blur", function () { // 监听用户名输入框失焦事件
+                var username = $(this).val();
+                console.log("blur"); // 网页控制台输出确认是否绑定成功
+                if (username.trim() !== "") {
+                    console.log("blur")
+                    $.ajax({
+                        url: "checkUsername", // 后端接口路径
+                        method: "GET",
+                        data: { username: username },
+                        success: function (response) {
+                            if (response.exists) {
+                                $("#usernameError")
+                                    .text("用户名已存在，请选择其他用户名！")
+                                    .css("color", "red");
+                            } else {
+                                $("#usernameError")
+                                    .text("用户名合法")
+                                    .css("color", "green");
+                            }
+                        },
+                        error: function () {
+                            $("#usernameError")
+                                .text("服务器错误，请稍后重试！")
+                                .css("color", "red");
+                        }
+                    });
+                }
+            });
+        });
+
     </script>
 </div>
 

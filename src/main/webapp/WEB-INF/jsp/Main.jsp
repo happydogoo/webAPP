@@ -2,7 +2,8 @@
 
 <!DOCTYPE html>
 <html lang="zh-CN">
-<script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 <head>
     <meta charset="UTF-8">
@@ -152,9 +153,9 @@
 
 </head>
 <body>
-
-<jsp:include page="/WEB-INF/jsp/common/MainHeader.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/jsp/Category.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/common/MainHeader.jsp"></jsp:include>
+
 
 </body>
 

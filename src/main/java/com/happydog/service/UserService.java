@@ -15,5 +15,12 @@ public class UserService {
         return userDao.changePassword(username,newPassword,currentPassword);
 
     }
+    public boolean isUsernameExists(String username) {
+        return userDao.checkUsername(username);
+    }
 
+    public boolean changeUsername(String username,String newUsername){
+
+        return userDao.changeUsername(username,newUsername);
+    }
 }

@@ -234,31 +234,6 @@
 
         <li id="addCheckoutInfo" ><a  href="#" onclick="addCheckoutInfo(this)" style="justify-content: center; align-items: center;font-weight: bold; font-size: 24px">添加新的信息</a></li>
 
-
-<%--        style="min-width: calc(30.666% - 20px);"--%>
-<%--        style="--%>
-<%--        display: flex;--%>
-<%--        align-items: center;--%>
-<%--        justify-content: center;--%>
-<%--        min-width: calc(30.666% - 20px);--%>
-<%--        width: 100%;--%>
-<%--        height: 200px;--%>
-<%--        padding: 18px;--%>
-<%--        border: 1.4px solid #ccc;--%>
-<%--        border-radius: 30px;--%>
-<%--        background-color: #fff;--%>
-<%--        text-decoration: none;--%>
-<%--        color: #044004;--%>
-<%--        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);--%>
-<%--        transition: all 0.3s ease;--%>
-<%--        font-weight: bold;"--%>
-
-
-
-
-
-
-
     </ul>
 <form action="checkout" method="POST" accept-charset="UTF-8">
     <%
@@ -283,7 +258,7 @@
         <input type="text" id="shipZip" name="shipZip" required><br><br>
 
         <label for="shipCountrySelect">国家:</label>
-        <select id="shipCountrySelect" name="shipCountry" required>
+        <select id="shipCountrySelect" name="shipCountry" >
             <option value="">请选择国家</option>
             <option value="US">美国</option>
             <option value="CA">加拿大</option>
@@ -305,12 +280,12 @@
         <input type="text" id="creditCard" name="creditCard" required><br><br>
         <label for="cardType">信用卡类型:</label>
         <input type="text" id="cardType" name="cardType" required><br><br>
-
+        <input type="hidden" name="trueShipCountry" id="trueShipCountry">
         <button onclick="closePopup(this)">确认</button>
 
     </div>
 
-    <%--这个用于背景--%>
+
     <div id="overlay" style=" display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
 
     <input onclick="isCartEmpty(this)" type="submit" value="提交订单" style="

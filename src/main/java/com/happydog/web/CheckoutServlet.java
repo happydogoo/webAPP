@@ -42,7 +42,7 @@ public class CheckoutServlet extends HttpServlet {
         // 获取表单中的订单信息
         String shipAddr1 = request.getParameter("shipAddr1");
         String shipZip = request.getParameter("shipZip");
-        String shipCountry = request.getParameter("shipCountry");
+        String shipCountry = request.getParameter("trueShipCountry");
         String courier = request.getParameter("courier");
         String name = request.getParameter("name");
         String creditCard = request.getParameter("creditCard");
